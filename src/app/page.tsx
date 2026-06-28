@@ -362,10 +362,8 @@ export default function Home() {
               const isExpanded = expandedCategory === category.id;
 
               const CardContent = (
-                <div 
-                  className={`bg-white p-8 rounded-3xl border border-[#ECECEC] h-full flex flex-col justify-between transition-all duration-300 ${
-                    !category.premium ? "hover:border-neutral-400 hover:shadow-sm" : ""
-                  } cursor-pointer`}
+                <div
+                  className="bg-white p-8 rounded-3xl border border-[#ECECEC] h-full flex flex-col justify-between transition-all duration-300 cursor-pointer"
                   onClick={() => toggleCategory(category.id)}
                 >
                   <div>
@@ -428,18 +426,14 @@ export default function Home() {
 
               return (
                 <div key={category.id} className="relative">
-                  {category.premium ? (
-                    <ElectricBorder 
-                      color="#111111" 
-                      borderRadius={24} 
-                      chaos={0.08}
-                      speed={0.8}
-                    >
-                      {CardContent}
-                    </ElectricBorder>
-                  ) : (
-                    CardContent
-                  )}
+                  <ElectricBorder
+                    color="#111111"
+                    borderRadius={24}
+                    chaos={0.08}
+                    speed={0.8}
+                  >
+                    {CardContent}
+                  </ElectricBorder>
                 </div>
               );
             })}
