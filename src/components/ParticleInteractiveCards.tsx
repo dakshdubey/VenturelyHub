@@ -207,7 +207,7 @@ function StippleCard({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative rounded-3xl border border-[#ECECEC] bg-[#FDFDFD] p-12 md:p-16 flex flex-col items-center justify-center text-center min-h-[440px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)] transition-all duration-500 overflow-hidden group cursor-pointer"
+      className="relative rounded-3xl border border-[#ECECEC] bg-white p-12 md:p-16 flex flex-col items-center justify-center text-center min-h-[440px] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)] transition-all duration-500 overflow-hidden group cursor-pointer"
     >
       {/* Interactive Stipple Canvas Background */}
       <canvas

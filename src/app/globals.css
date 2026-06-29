@@ -115,3 +115,12 @@ html.lenis, html.lenis body {
 .gooey-container {
   filter: url('#gooey-light');
 }
+
+/* Hide scrollbar utility for clean sliders */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}

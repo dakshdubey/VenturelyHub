@@ -348,7 +348,7 @@ export default function Home() {
       {/* SERVICES SECTION */}
       <section
         id="services"
-        className="py-24 md:py-32 bg-[#FAFAFA]"
+        className="py-24 md:py-32 bg-white"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           {/* Section Header */}
@@ -514,7 +514,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             {/* Card 1 — Custom SDK Development */}
-            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-[#FAFAFA] flex flex-col gap-6">
+            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-white flex flex-col gap-6">
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#ECECEC] flex items-center justify-center group-hover:border-neutral-300 transition-all">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
               </div>
@@ -534,7 +534,7 @@ export default function Home() {
             </div>
 
             {/* Card 2 — White-Label Products */}
-            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-[#FAFAFA] flex flex-col gap-6">
+            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-white flex flex-col gap-6">
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#ECECEC] flex items-center justify-center group-hover:border-neutral-300 transition-all">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               </div>
@@ -554,7 +554,7 @@ export default function Home() {
             </div>
 
             {/* Card 3 — AI Infrastructure */}
-            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-[#FAFAFA] flex flex-col gap-6 md:col-span-2 lg:col-span-1">
+            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-white flex flex-col gap-6 md:col-span-2 lg:col-span-1">
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#ECECEC] flex items-center justify-center group-hover:border-neutral-300 transition-all">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.64 5.64l2.83 2.83M15.53 15.53l2.83 2.83M5.64 18.36l2.83-2.83M15.53 8.47l2.83-2.83"/></svg>
               </div>
@@ -575,7 +575,7 @@ export default function Home() {
           </div>
 
           {/* Why Custom SDKs callout */}
-          <div className="mt-16 border border-[#ECECEC] rounded-3xl p-10 bg-[#FAFAFA]">
+          <div className="mt-16 border border-[#ECECEC] rounded-3xl p-10 bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
                 <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">Why Custom SDKs?</span>
@@ -629,7 +629,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             
             {/* Column 1: Technology Ownership */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">01 / OWNERSHIP</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">Technology Ownership</h3>
@@ -648,7 +648,7 @@ export default function Home() {
             </div>
 
             {/* Column 2: Enterprise Engineering */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">02 / STRUCTURE</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">Enterprise Engineering</h3>
@@ -668,7 +668,7 @@ export default function Home() {
             </div>
 
             {/* Column 3: Scalable Systems */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">03 / PERFORMANCE</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">Scalable Systems</h3>
@@ -688,7 +688,7 @@ export default function Home() {
             </div>
 
             {/* Column 4: Security */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">04 / DEFENSE</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">Robust Security</h3>
@@ -705,7 +705,7 @@ export default function Home() {
             </div>
 
             {/* Column 5: AI First */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">05 / INTELLIGENCE</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">AI First Integration</h3>
@@ -723,7 +723,7 @@ export default function Home() {
             </div>
 
             {/* Column 6: Long Term Partnership */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">06 / GROWTH</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">Long Term Alliance</h3>
@@ -746,7 +746,7 @@ export default function Home() {
             </div>
 
             {/* Column 7: Startup Focus */}
-            <div className="p-8 bg-[#FAFAFA] rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96 md:col-span-2 lg:col-span-1">
+            <div className="p-8 bg-white rounded-3xl border border-[#ECECEC] flex flex-col justify-between h-96 md:col-span-2 lg:col-span-1">
               <div className="w-full">
                 <span className="font-mono text-xs text-neutral-400">07 / ACCELERATION</span>
                 <h3 className="text-lg font-bold tracking-tight text-neutral-900 mt-2 mb-4">Startup Focus</h3>
@@ -775,7 +775,7 @@ export default function Home() {
       {/* ABOUT SECTION */}
       <section
         id="about"
-        className="py-24 md:py-36 px-6 md:px-12 lg:px-24 bg-[#FAFAFA] border-t border-[#ECECEC]"
+        className="py-24 md:py-36 px-6 md:px-12 lg:px-24 bg-white border-t border-[#ECECEC]"
       >
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>

@@ -44,7 +44,7 @@ export default function CaseStudySlider() {
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
-    const amount = direction === "left" ? -520 : 520;
+    const amount = direction === "left" ? -760 : 760;
     scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
   };
 
@@ -69,17 +69,17 @@ export default function CaseStudySlider() {
       {/* Horizontal Scrollable Slider Bleeding Full Width */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-24 pb-8"
+        className="flex gap-8 overflow-x-auto scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-6 md:px-12 lg:px-24 pb-8"
         style={{ scrollSnapType: "x mandatory" }}
       >
         {caseStudies.map((item) => (
           <div
             key={item.id}
-            className="shrink-0 w-[85vw] sm:w-[540px] md:w-[600px] flex flex-col gap-4 group cursor-pointer"
+            className="shrink-0 w-[90vw] sm:w-[680px] md:w-[760px] lg:w-[840px] flex flex-col gap-5 group cursor-pointer"
             style={{ scrollSnapAlign: "start" }}
           >
             {/* Image Container Card */}
-            <div className="relative aspect-[16/10] w-full rounded-[32px] overflow-hidden bg-neutral-200 border border-[#ECECEC] shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+            <div className="relative aspect-[16/9.5] min-h-[380px] md:min-h-[480px] w-full rounded-[36px] overflow-hidden bg-neutral-200 border border-[#ECECEC] shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <Image
                 src={item.image}
                 alt={item.role}

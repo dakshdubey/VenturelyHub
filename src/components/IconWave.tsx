@@ -110,7 +110,7 @@ function WavyPill({ index, icon, scrollPhase }: WavyPillProps) {
     <motion.div
       style={{ y: yOffset }}
       suppressHydrationWarning
-      className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#FAFAFA] border border-[#ECECEC] flex items-center justify-center text-neutral-800 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:scale-110 hover:border-neutral-400 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-pointer shrink-0"
+      className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white border border-[#ECECEC] flex items-center justify-center text-neutral-800 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:scale-110 hover:border-neutral-400 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-pointer shrink-0"
     >
       {icon}
     </motion.div>
