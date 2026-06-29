@@ -27,6 +27,7 @@ import LogoLoop from "@/components/LogoLoop";
 import IconWave from "@/components/IconWave";
 import ParticleInteractiveCards from "@/components/ParticleInteractiveCards";
 import CaseStudySlider from "@/components/CaseStudySlider";
+import InteractiveArchitecturalCard from "@/components/InteractiveArchitecturalCard";
 
 // Navigation Items
 const navItems = [
@@ -805,25 +806,7 @@ export default function Home() {
           </div>
           
           {/* Architectural Geometry visual for About */}
-          <div className="relative aspect-square bg-white border border-[#ECECEC] rounded-3xl overflow-hidden flex items-center justify-center p-12">
-            <div className="absolute inset-0 bg-[radial-gradient(#ECECEC_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-30" />
-            <svg width="240" height="240" viewBox="0 0 240 240" className="overflow-visible opacity-80">
-              {/* Complex blueprint visual */}
-              <circle cx="120" cy="120" r="100" stroke="#ECECEC" strokeWidth="1" />
-              <circle cx="120" cy="120" r="70" stroke="#111111" strokeWidth="0.75" strokeDasharray="4 4" />
-              <rect x="70" y="70" width="100" height="100" stroke="#ECECEC" strokeWidth="1" fill="none" />
-              <line x1="20" y1="120" x2="220" y2="120" stroke="#ECECEC" strokeWidth="0.5" />
-              <line x1="120" y1="20" x2="120" y2="220" stroke="#ECECEC" strokeWidth="0.5" />
-              <motion.path 
-                d="M50 120 L120 50 L190 120 L120 190 Z" 
-                stroke="#111111" strokeWidth="1" fill="none"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                style={{ transformOrigin: "120px 120px" }}
-              />
-              <circle cx="120" cy="120" r="4" fill="#111111" />
-            </svg>
-          </div>
+          <InteractiveArchitecturalCard />
         </div>
       </section>
 
