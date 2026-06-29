@@ -199,7 +199,7 @@ export default function ParticleInteractiveCards() {
 
   return (
     <section
-      className="relative bg-white select-none overflow-hidden border-t border-b border-[#ECECEC]"
+      className="relative bg-white select-none overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -210,61 +210,61 @@ export default function ParticleInteractiveCards() {
       />
 
       {/* Two-column layout, no boxes */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 min-h-[440px]">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2" style={{ minHeight: "820px" }}>
 
-        {/* LEFT — Developers */}
-        <div className="flex flex-col items-center justify-center text-center px-12 md:px-20 py-24 md:border-r border-[#ECECEC] gap-6">
+        {/* LEFT — For Startups */}
+        <div className="flex flex-col items-center justify-center text-center px-16 md:px-24 py-32 gap-8">
           {/* Badge */}
-          <div className="flex items-center gap-1.5">
-            <span className="w-1 h-1 rounded-full bg-neutral-400 inline-block" />
-            <span className="text-xs font-medium text-neutral-500 tracking-tight">
-              Available at no charge
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block" />
+            <span className="text-xs font-semibold text-neutral-400 tracking-widest uppercase">
+              For Startups &amp; Builders
             </span>
-            <span className="w-1 h-1 rounded-full bg-neutral-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block" />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <h3 className="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight leading-tight font-sans">
-              For developers
+          <div className="flex flex-col gap-3 max-w-md">
+            <h3 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-neutral-900 tracking-tight leading-[1.05] font-sans">
+              Build fast.<br />Ship faster.
             </h3>
-            <p className="text-2xl md:text-3xl font-normal text-neutral-600 tracking-tight font-sans">
-              Achieve new heights
+            <p className="text-lg md:text-xl text-neutral-500 leading-relaxed font-sans">
+              VenturelyHub turns your idea into a production-grade product — with elite engineers, designer, and AI infrastructure at your side.
             </p>
           </div>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="mt-2 px-7 py-3.5 bg-neutral-900 text-white font-medium text-sm rounded-full hover:bg-neutral-800 transition-colors shadow-sm"
+            className="mt-2 px-9 py-4 bg-neutral-900 text-white font-semibold text-sm rounded-full hover:bg-neutral-800 transition-colors shadow-md"
           >
-            Get Started
+            Start Your Project
           </motion.button>
         </div>
 
-        {/* RIGHT — Organizations */}
-        <div className="flex flex-col items-center justify-center text-center px-12 md:px-20 py-24 gap-6">
+        {/* RIGHT — For Enterprises */}
+        <div className="flex flex-col items-center justify-center text-center px-16 md:px-24 py-32 gap-8">
           {/* Badge */}
-          <div className="flex items-center gap-1.5">
-            <span className="w-1 h-1 rounded-full bg-neutral-400 inline-block" />
-            <span className="text-xs font-medium text-neutral-500 tracking-tight">
-              Now Available!
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 inline-block" />
+            <span className="text-xs font-semibold text-neutral-400 tracking-widest uppercase">
+              For Enterprises &amp; Teams
             </span>
-            <span className="w-1 h-1 rounded-full bg-neutral-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 inline-block" />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <h3 className="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight leading-tight font-sans">
-              For organizations
+          <div className="flex flex-col gap-3 max-w-md">
+            <h3 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-neutral-900 tracking-tight leading-[1.05] font-sans">
+              Scale smart.<br />Own it all.
             </h3>
-            <p className="text-2xl md:text-3xl font-normal text-neutral-600 tracking-tight font-sans">
-              Level up your entire team
+            <p className="text-lg md:text-xl text-neutral-500 leading-relaxed font-sans">
+              Custom SDKs, white-label systems and AI pipelines — built for teams that need institutional-grade technology without the overhead.
             </p>
           </div>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="mt-2 px-7 py-3.5 bg-white border border-neutral-300 text-neutral-800 font-medium text-sm rounded-full hover:bg-neutral-50 transition-colors"
+            className="mt-2 px-9 py-4 bg-white border border-neutral-200 text-neutral-800 font-semibold text-sm rounded-full hover:bg-neutral-50 hover:border-neutral-300 transition-colors shadow-sm"
           >
             Explore Enterprise
           </motion.button>

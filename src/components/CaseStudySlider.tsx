@@ -106,68 +106,93 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Smooth springs for cursor magnetic tracking
-  const buttonX = useSpring(0, { stiffness: 180, damping: 18, mass: 0.4 });
-  const buttonY = useSpring(0, { stiffness: 180, damping: 18, mass: 0.4 });
+  // 3D tilt springs for the whole card
+  const rotateX = useSpring(0, { stiffness: 160, damping: 20, mass: 0.5 });
+  const rotateY = useSpring(0, { stiffness: 160, damping: 20, mass: 0.5 });
+  const scale = useSpring(1, { stiffness: 200, damping: 20 });
+
+  // Magnetic button springs
+  const buttonX = useSpring(0, { stiffness: 200, damping: 18, mass: 0.4 });
+  const buttonY = useSpring(0, { stiffness: 200, damping: 18, mass: 0.4 });
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!cardRef.current) return;
       const rect = cardRef.current.getBoundingClientRect();
-      const cx = rect.left + rect.width * 0.75; // Neutral origin near right side
-      const cy = rect.top + rect.height * 0.8;
+      const nx = (e.clientX - rect.left) / rect.width;  // 0–1
+      const ny = (e.clientY - rect.top) / rect.height;  // 0–1
 
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
+      // 3D tilt: ±8° range
+      rotateY.set((nx - 0.5) * 16);
+      rotateX.set(-(ny - 0.5) * 10);
 
-      // Magnetic range shift
-      buttonX.set(dx * 0.45);
-      buttonY.set(dy * 0.45);
+      // Magnetic button: relative to bottom-right anchor
+      const cx = rect.left + rect.width * 0.82;
+      const cy = rect.top + rect.height * 0.85;
+      buttonX.set((e.clientX - cx) * 0.5);
+      buttonY.set((e.clientY - cy) * 0.5);
     },
-    [buttonX, buttonY]
+    [rotateX, rotateY, buttonX, buttonY]
   );
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+    scale.set(1.02);
+  }, [scale]);
 
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
+    rotateX.set(0);
+    rotateY.set(0);
+    scale.set(1);
     buttonX.set(0);
     buttonY.set(0);
-  }, [buttonX, buttonY]);
+  }, [rotateX, rotateY, scale, buttonX, buttonY]);
 
   return (
     <div
       className="shrink-0 w-[90vw] sm:w-[680px] md:w-[760px] lg:w-[840px] flex flex-col gap-5 group cursor-pointer"
-      style={{ scrollSnapAlign: "start" }}
+      style={{ scrollSnapAlign: "start", perspective: "1000px" }}
     >
-      {/* Image Container Card */}
-      <div
+      {/* 3D Tilting Image Card */}
+      <motion.div
         ref={cardRef}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
+        style={{
+          rotateX,
+          rotateY,
+          scale,
+          transformStyle: "preserve-3d",
+        }}
         className="relative aspect-[16/9.5] min-h-[380px] md:min-h-[480px] w-full rounded-[36px] overflow-hidden bg-neutral-200 border border-[#ECECEC] shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
       >
         <Image
           src={item.image}
           alt={item.role}
           fill
-          className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="object-cover object-center"
         />
 
-        {/* Subtle Dark Gradient overlay for text contrast */}
+        {/* Subtle Dark Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-        {/* Text Overlay on Left */}
-        <div className="absolute top-10 left-10 z-10 max-w-[220px]">
+        {/* Text Overlay on Left — slight z-lift for depth feel */}
+        <motion.div
+          className="absolute top-10 left-10 z-10 max-w-[220px]"
+          style={{ z: 20 }}
+        >
           <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight tracking-tight whitespace-pre-line font-sans drop-shadow-sm">
             {item.roleOverlay}
           </h3>
-        </div>
+        </motion.div>
 
-        {/* Dynamic Magnetic Action Pill Button following cursor */}
+        {/* Magnetic Watch Case pill */}
         <div className="absolute bottom-10 right-10 md:bottom-12 md:right-12 z-20 pointer-events-none">
           <motion.div
             style={{ x: buttonX, y: buttonY }}
-            animate={{ scale: isHovered ? 1.08 : 1 }}
+            animate={{ scale: isHovered ? 1.1 : 1 }}
             transition={{ scale: { type: "spring", stiffness: 300, damping: 20 } }}
             className="px-6 py-3 bg-white/90 backdrop-blur-md rounded-full text-neutral-900 font-medium text-xs md:text-sm flex items-center gap-2.5 shadow-xl border border-white/40"
           >
@@ -177,7 +202,17 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
             <span>{item.buttonText}</span>
           </motion.div>
         </div>
-      </div>
+
+        {/* Highlight sheen that tracks cursor */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: isHovered
+              ? "radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.07) 0%, transparent 60%)"
+              : "none",
+          }}
+        />
+      </motion.div>
 
       {/* Subtext info below image */}
       <div className="px-2 pt-1 flex flex-col gap-0.5">

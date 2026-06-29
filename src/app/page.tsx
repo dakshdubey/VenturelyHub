@@ -340,10 +340,7 @@ export default function Home() {
       {/* SCROLL-DRIVEN DEVELOPER ICON WAVE */}
       <IconWave />
 
-      {/* BRAND & TECH LOGO MARQUEE */}
-      <section className="bg-white border-y border-[#ECECEC]">
-        <LogoLoop items={techLogos} speed={25} />
-      </section>
+
 
       {/* SERVICES SECTION */}
       <section
@@ -494,109 +491,185 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ENTERPRISE SOLUTIONS SECTION */}
-      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 pb-8 border-b border-[#ECECEC]">
-            <div>
-              <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">Special Capabilities</span>
-              <h2 className="text-5xl md:text-6xl font-black tracking-tight text-neutral-900 uppercase leading-none mt-3">
-                Enterprise<br />Solutions
-              </h2>
-            </div>
-            <p className="text-neutral-500 max-w-sm text-sm leading-relaxed">
+      {/* ENTERPRISE SCROLL SHOWCASE — sticky scroll two-column layout */}
+      <section className="bg-white">
+        {/* Section Header */}
+        <div className="px-10 md:px-16 lg:px-20 py-20">
+          <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">Special Capabilities</span>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mt-3">
+            <h2 className="text-5xl md:text-6xl font-black tracking-tight text-neutral-900 uppercase leading-none">
+              Enterprise<br />Solutions
+            </h2>
+            <p className="text-neutral-500 max-w-sm text-sm leading-relaxed lg:mb-1">
               Beyond standard services — we engineer proprietary systems, internal frameworks, and custom technology infrastructure built to last decades.
             </p>
           </div>
+        </div>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            {/* Card 1 — Custom SDK Development */}
-            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-white flex flex-col gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-[#ECECEC] flex items-center justify-center group-hover:border-neutral-300 transition-all">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        {/* Row 1 — Custom SDK */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left — sticky text */}
+          <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20 lg:py-0">
+            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">01 / Custom SDK Development</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+              Custom SDK<br />Development
+            </h2>
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mb-10">
+              We engineer proprietary SDKs, internal frameworks, and software modules designed specifically for your business.
+            </p>
+            <ul className="flex flex-col gap-3">
+              {["Enhanced Security", "Technology Ownership", "Scalable Architecture", "Enterprise Performance", "Custom Integrations", "Long-Term Flexibility"].map(b => (
+                <li key={b} className="flex items-center gap-3 text-sm text-neutral-700">
+                  <span className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
+                    <svg width="8" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Right — visual panel */}
+          <div className="flex items-center justify-center bg-neutral-50 p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full max-w-md rounded-3xl overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.12)] bg-[#0D0D0D] p-6 font-mono text-sm">
+              <div className="flex items-center gap-2 mb-5">
+                <span className="w-3 h-3 rounded-full bg-red-500" />
+                <span className="w-3 h-3 rounded-full bg-yellow-400" />
+                <span className="w-3 h-3 rounded-full bg-green-500" />
+                <span className="ml-3 text-neutral-500 text-xs">venturely-sdk / index.ts</span>
               </div>
-              <div>
-                <h3 className="text-neutral-900 text-xl font-bold mb-3">Custom SDK Development</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">We engineer proprietary SDKs, internal frameworks, and software modules designed specifically for your business.</p>
-              </div>
-              <div className="border-t border-[#ECECEC] pt-5 flex flex-col gap-2">
-                <span className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-1">Benefits</span>
-                {["Enhanced Security", "Technology Ownership", "Scalable Architecture", "Enterprise Performance", "Custom Integrations", "Long-Term Flexibility"].map(b => (
-                  <div key={b} className="flex items-center gap-2">
-                    <span className="text-neutral-900 text-xs font-bold">✓</span>
-                    <span className="text-neutral-600 text-sm">{b}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Card 2 — White-Label Products */}
-            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-white flex flex-col gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-[#ECECEC] flex items-center justify-center group-hover:border-neutral-300 transition-all">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              </div>
-              <div>
-                <h3 className="text-neutral-900 text-xl font-bold mb-3">White-Label Products</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">Deploy fully branded, production-ready digital products under your own identity — built by us, owned by you.</p>
-              </div>
-              <div className="border-t border-[#ECECEC] pt-5 flex flex-col gap-2">
-                <span className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-1">Benefits</span>
-                {["Full Brand Control", "Rapid Market Entry", "No Attribution Required", "Ongoing Support", "Source Code Delivery", "Custom Licensing"].map(b => (
-                  <div key={b} className="flex items-center gap-2">
-                    <span className="text-neutral-900 text-xs font-bold">✓</span>
-                    <span className="text-neutral-600 text-sm">{b}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Card 3 — AI Infrastructure */}
-            <div className="border border-[#ECECEC] rounded-3xl p-8 hover:border-neutral-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 group bg-white flex flex-col gap-6 md:col-span-2 lg:col-span-1">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-[#ECECEC] flex items-center justify-center group-hover:border-neutral-300 transition-all">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.64 5.64l2.83 2.83M15.53 15.53l2.83 2.83M5.64 18.36l2.83-2.83M15.53 8.47l2.83-2.83"/></svg>
-              </div>
-              <div>
-                <h3 className="text-neutral-900 text-xl font-bold mb-3">AI Infrastructure & Pipelines</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">End-to-end AI systems — from model training pipelines and vector databases to production-grade LLM deployment.</p>
-              </div>
-              <div className="border-t border-[#ECECEC] pt-5 flex flex-col gap-2">
-                <span className="font-mono text-xs text-neutral-400 uppercase tracking-wider mb-1">Benefits</span>
-                {["LLM Fine-Tuning", "RAG Pipelines", "Vector Embeddings", "Real-Time Inference", "Model Observability", "Cost Optimisation"].map(b => (
-                  <div key={b} className="flex items-center gap-2">
-                    <span className="text-neutral-900 text-xs font-bold">✓</span>
-                    <span className="text-neutral-600 text-sm">{b}</span>
-                  </div>
-                ))}
+              <div className="space-y-1 text-xs leading-relaxed">
+                <p><span className="text-purple-400">import</span> <span className="text-white">{"{ VenturelySdk }"}</span> <span className="text-purple-400">from</span> <span className="text-green-400">&apos;@venturely/core&apos;</span></p>
+                <p className="text-neutral-600">&nbsp;</p>
+                <p><span className="text-blue-400">const</span> <span className="text-white">sdk</span> <span className="text-neutral-400">=</span> <span className="text-yellow-300">new</span> <span className="text-cyan-400">VenturelySdk</span><span className="text-white">{"({"}</span></p>
+                <p className="pl-4"><span className="text-blue-300">apiKey</span><span className="text-white">:</span> <span className="text-green-400">process.env.VH_KEY</span><span className="text-white">,</span></p>
+                <p className="pl-4"><span className="text-blue-300">org</span><span className="text-white">:</span> <span className="text-green-400">&apos;your-company&apos;</span><span className="text-white">,</span></p>
+                <p className="pl-4"><span className="text-blue-300">encryption</span><span className="text-white">:</span> <span className="text-orange-400">true</span><span className="text-white">,</span></p>
+                <p><span className="text-white">{"});"}</span></p>
+                <p className="text-neutral-600">&nbsp;</p>
+                <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}</span></p>
+                <p className="pl-4"><span className="text-blue-400">return</span> <span className="text-white">sdk.</span><span className="text-yellow-300">transform</span><span className="text-white">(data, {"{"} <span className="text-blue-300">secure</span>: <span className="text-orange-400">true</span> {"}"});"</span></p>
+                <p><span className="text-white">{"}"}</span></p>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Why Custom SDKs callout */}
-          <div className="mt-16 border border-[#ECECEC] rounded-3xl p-10 bg-white">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-              <div>
-                <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">Why Custom SDKs?</span>
-                <h3 className="text-neutral-900 text-3xl font-bold mt-3 mb-4 leading-tight">Own Your Technology Stack</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">
-                  Unlike generic solutions, custom SDKs allow businesses to maintain complete control over critical systems while reducing dependency on third-party technologies. You ship faster, scale cheaper, and compete harder.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { stat: "10×", label: "Faster Internal Dev Cycles" },
-                  { stat: "0%", label: "Vendor Lock-in" },
-                  { stat: "100%", label: "Source Code Ownership" },
-                  { stat: "∞", label: "Scalability Ceiling" },
-                ].map(({ stat, label }) => (
-                  <div key={label} className="border border-[#ECECEC] rounded-2xl p-5 bg-white">
-                    <div className="text-3xl font-black text-neutral-900">{stat}</div>
-                    <div className="text-xs text-neutral-400 mt-1">{label}</div>
+        {/* Row 2 — White-Label Products */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left — sticky text */}
+          <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20 lg:py-0">
+            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">02 / White-Label Products</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+              White-Label<br />Products
+            </h2>
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mb-10">
+              Deploy fully branded, production-ready digital products under your own identity — built by us, owned by you.
+            </p>
+            <ul className="flex flex-col gap-3">
+              {["Full Brand Control", "Rapid Market Entry", "No Attribution Required", "Ongoing Support", "Source Code Delivery", "Custom Licensing"].map(b => (
+                <li key={b} className="flex items-center gap-3 text-sm text-neutral-700">
+                  <span className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
+                    <svg width="8" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Right — visual panel */}
+          <div className="flex items-center justify-center bg-neutral-50 p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full max-w-md space-y-4">
+              <div className="rounded-3xl border border-[#ECECEC] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.07)] overflow-hidden">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-[#ECECEC]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-neutral-900 flex items-center justify-center">
+                      <span className="text-white text-[8px] font-black">Y</span>
+                    </div>
+                    <span className="text-sm font-bold text-neutral-900">YourBrand</span>
                   </div>
-                ))}
+                  <div className="flex gap-4 items-center text-xs text-neutral-400">
+                    <span>Dashboard</span>
+                    <span>Analytics</span>
+                    <span className="text-neutral-900 font-semibold">Settings</span>
+                  </div>
+                </div>
+                <div className="p-6 space-y-3">
+                  <div className="h-2 bg-neutral-100 rounded-full w-3/4" />
+                  <div className="h-2 bg-neutral-100 rounded-full w-1/2" />
+                  <div className="grid grid-cols-3 gap-3 mt-4">
+                    {["Users", "Revenue", "Growth"].map(l => (
+                      <div key={l} className="rounded-xl border border-[#ECECEC] p-4 bg-white">
+                        <div className="text-[10px] text-neutral-400 mb-1">{l}</div>
+                        <div className="text-lg font-black text-neutral-900">—</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
+              <p className="text-center text-xs text-neutral-400 tracking-wide">Fully branded. Zero attribution. 100% yours.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Row 3 — AI Infrastructure */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left — sticky text */}
+          <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20 lg:py-0">
+            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">03 / AI Infrastructure</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+              AI Infrastructure<br />&amp; Pipelines
+            </h2>
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mb-10">
+              End-to-end AI systems — from model training pipelines and vector databases to production-grade LLM deployment.
+            </p>
+            <ul className="flex flex-col gap-3">
+              {["LLM Fine-Tuning", "RAG Pipelines", "Vector Embeddings", "Real-Time Inference", "Model Observability", "Cost Optimisation"].map(b => (
+                <li key={b} className="flex items-center gap-3 text-sm text-neutral-700">
+                  <span className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
+                    <svg width="8" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Right — AI Glow Orb visual */}
+          <div className="flex items-center justify-center p-10 md:p-16 min-h-[60vh] lg:min-h-screen bg-[#060814]">
+            <div className="relative w-72 h-72 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(30,80,255,0.55)_0%,rgba(10,20,80,0.3)_50%,transparent_80%)] blur-2xl" />
+              <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(80,120,255,0.4)_0%,transparent_70%)] blur-xl" />
+              <div className="relative z-10 text-center">
+                <p className="text-white text-lg font-bold tracking-tight">Venturely AI</p>
+                <p className="text-blue-300 text-xs mt-1 opacity-70">Infrastructure Engine</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Row 4 — Why Custom SDKs stats */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
+          <div className="flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20">
+            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">Why Custom SDKs?</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+              Own Your<br />Technology Stack
+            </h2>
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm">
+              Unlike generic solutions, custom SDKs allow businesses to maintain complete control over critical systems while reducing dependency on third-party technologies. You ship faster, scale cheaper, and compete harder.
+            </p>
+          </div>
+          <div className="flex items-center px-10 md:px-16 lg:px-20 py-20">
+            <div className="grid grid-cols-2 gap-6 w-full">
+              {[
+                { stat: "10×", label: "Faster Internal Dev Cycles" },
+                { stat: "0%", label: "Vendor Lock-in" },
+                { stat: "100%", label: "Source Code Ownership" },
+                { stat: "∞", label: "Scalability Ceiling" },
+              ].map(({ stat, label }) => (
+                <div key={label} className="border border-[#ECECEC] rounded-2xl p-6 bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow">
+                  <div className="text-4xl font-black text-neutral-900 mb-1">{stat}</div>
+                  <div className="text-xs text-neutral-400">{label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
