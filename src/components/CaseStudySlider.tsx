@@ -14,26 +14,26 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "dev",
-    role: "Full stack developer",
-    roleOverlay: "Full stack\ndeveloper",
-    description: "Build production-ready applications with confidence.",
+    id: "software",
+    role: "Custom Software Engineering",
+    roleOverlay: "Engineered\nto scale",
+    description: "Custom technology infrastructure, core web systems, and internal modules built for performance.",
     image: "/assets/case_dev.png",
     buttonText: "Watch case",
   },
   {
-    id: "lead",
-    role: "Enterprise team lead",
-    roleOverlay: "Enterprise\nteam lead",
-    description: "Orchestrate large scale engineering architectures seamlessly.",
+    id: "ai",
+    role: "AI & Model Orchestration",
+    roleOverlay: "Intelligent\npipelines",
+    description: "Deploying secure LLM fine-tuning setups, neural search systems, and high-performance vector databases.",
     image: "/assets/case_lead.png",
     buttonText: "Watch case",
   },
   {
-    id: "founder",
-    role: "Startup founder",
-    roleOverlay: "Startup\nfounder",
-    description: "Go from concept to institutional-grade product in record speed.",
+    id: "branding",
+    role: "High-Fidelity Branding",
+    roleOverlay: "Identity &\npositioning",
+    description: "Crafting beautiful brand identity designs, user experiences, and visual languages that command authority.",
     image: "/assets/case_founder.png",
     buttonText: "Watch case",
   },
@@ -55,12 +55,12 @@ export default function CaseStudySlider() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           <div className="lg:col-span-7">
             <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] font-sans">
-              Built for developers<br />for the agent-first era
+              Built for performance<br />designed for conversion
             </h2>
           </div>
           <div className="lg:col-span-5">
-            <p className="text-neutral-600 text-sm md:text-base leading-relaxed font-sans">
-              Venturely Hub is built for user trust, whether you&apos;re a professional developer working in a large enterprise codebase, a hobbyist vibe-coding in their spare time, or anyone in between.
+            <p className="text-neutral-500 text-sm md:text-base leading-relaxed font-sans">
+              VenturelyHub takes digital products from raw concepts to institutional-grade systems, combining deep backend engineering with high-fidelity creative design.
             </p>
           </div>
         </div>
