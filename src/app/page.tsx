@@ -563,7 +563,7 @@ export default function Home() {
       {/* HEADER / FLOATING NAV CONTAINER */}
       <header className="fixed top-6 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-20 pointer-events-none">
         {/* Left Side: Brand Logo */}
-        <div className="hidden md:flex items-center gap-2 pointer-events-auto">
+        <div className="hidden md:flex items-center gap-2 pointer-events-auto w-36">
           <a href="#home" className="flex items-center gap-2.5 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full border border-[#ECECEC] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-neutral-300 transition-colors group">
             <Image
               src="/assets/venturely.jpeg"
@@ -577,22 +577,22 @@ export default function Home() {
         </div>
 
         {/* Center: Navigation Bar */}
-        <div className="pointer-events-auto mx-auto md:mx-0">
+        <div className="pointer-events-auto w-full md:w-auto flex justify-center">
           <GooeyNav items={navItems} />
         </div>
 
         {/* Right Side: Login Button */}
-        <div className="pointer-events-auto flex justify-end">
+        <div className="hidden md:flex pointer-events-auto justify-end w-36">
           <a 
             href="#login" 
             className="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-neutral-800 transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-neutral-800 font-sans"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span className="hidden sm:inline">Login as Client</span>
-            <span className="inline sm:hidden">Login</span>
+            <span>Login</span>
           </a>
         </div>
       </header>
+
 
 
       {/* HERO SECTION */}
@@ -659,6 +659,13 @@ export default function Home() {
               }}
             >
               Why Partner With Us
+            </a>
+            <a
+              href="#login"
+              className="px-8 py-4 border border-neutral-200 text-neutral-800 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-neutral-50 transition-colors md:hidden"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Client Login
             </a>
           </motion.div>
         </div>
