@@ -194,6 +194,8 @@ const serviceCategories = [
       "Search-Engine Optimized Copy Strategy"
     ]
   }
+];
+
 function ServiceCardVisual({ id }: { id: string }) {
   return (
     <div className="relative w-full aspect-square bg-[#0B0B0C] border border-[#212124] rounded-[24px] overflow-hidden flex items-center justify-center select-none group">
