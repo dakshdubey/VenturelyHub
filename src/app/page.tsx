@@ -25,7 +25,6 @@ import GooeyNav from "@/components/GooeyNav";
 import ElectricBorder from "@/components/ElectricBorder";
 import LogoLoop from "@/components/LogoLoop";
 import IconWave from "@/components/IconWave";
-import InteractiveGlobe from "@/components/InteractiveGlobe";
 import ParticleInteractiveCards from "@/components/ParticleInteractiveCards";
 import CaseStudySlider from "@/components/CaseStudySlider";
 
@@ -256,54 +255,42 @@ export default function Home() {
         </div>
 
         {/* Massive Typography Hero Middle */}
-        <div className="my-auto py-12 z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
-          <div className="flex flex-col items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h1 className="hero-heading uppercase tracking-tighter text-neutral-900">
-                BUILD <span className="text-[#ECECEC]">•</span> LAUNCH <span className="text-[#ECECEC]">•</span> GROW
-              </h1>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center"
-            >
-              <a
-                href="#services"
-                className="px-8 py-4 bg-neutral-900 text-white rounded-full font-medium text-sm flex items-center gap-2 hover:bg-neutral-800 transition-colors shadow-sm"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                Explore Capabilities <ArrowRight size="18" />
-              </a>
-              <a
-                href="#trust"
-                className="px-8 py-4 border border-neutral-200 text-neutral-800 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-neutral-50 transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#trust")?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                Why Partner With Us
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Interactive 3D Globe */}
+        <div className="my-auto py-12 z-10 flex flex-col items-start">
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex items-center justify-center shrink-0"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <InteractiveGlobe />
+            <h1 className="hero-heading uppercase tracking-tighter text-neutral-900">
+              BUILD <span className="text-[#ECECEC]">•</span> LAUNCH <span className="text-[#ECECEC]">•</span> GROW
+            </h1>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center w-full"
+          >
+            <a
+              href="#services"
+              className="px-8 py-4 bg-neutral-900 text-white rounded-full font-medium text-sm flex items-center gap-2 hover:bg-neutral-800 transition-colors shadow-sm"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Explore Capabilities <ArrowRight size="18" />
+            </a>
+            <a
+              href="#trust"
+              className="px-8 py-4 border border-neutral-200 text-neutral-800 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-neutral-50 transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#trust")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Why Partner With Us
+            </a>
           </motion.div>
         </div>
 
