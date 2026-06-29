@@ -42,39 +42,84 @@ const caseStudies: CaseStudy[] = [
 export default function CaseStudySlider() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // ── Drag-to-scroll state ──────────────────────────────────────────────────
+  // ── Drag-to-scroll with momentum ──────────────────────────────────────────
   const isDragging = useRef(false);
   const dragStartX = useRef(0);
   const scrollStartLeft = useRef(0);
   const hasDragged = useRef(false);
+  const velocity = useRef(0);
+  const lastX = useRef(0);
+  const lastTime = useRef(0);
+  const rafId = useRef<number | null>(null);
   const [cursor, setCursor] = useState<"grab" | "grabbing">("grab");
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const stopMomentum = useCallback(() => {
+    if (rafId.current !== null) {
+      cancelAnimationFrame(rafId.current);
+      rafId.current = null;
+    }
+  }, []);
+
+  const applyMomentum = useCallback(() => {
     if (!scrollRef.current) return;
+    velocity.current *= 0.92; // friction coefficient
+    if (Math.abs(velocity.current) < 0.5) {
+      scrollRef.current.style.scrollSnapType = "x mandatory";
+      rafId.current = null;
+      return;
+    }
+    scrollRef.current.scrollLeft += velocity.current;
+    rafId.current = requestAnimationFrame(applyMomentum);
+  }, []);
+
+  const onMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    stopMomentum();
     isDragging.current = true;
     hasDragged.current = false;
     dragStartX.current = e.clientX;
+    lastX.current = e.clientX;
+    lastTime.current = Date.now();
     scrollStartLeft.current = scrollRef.current.scrollLeft;
+    velocity.current = 0;
+    scrollRef.current.style.scrollSnapType = "none";
     setCursor("grabbing");
     e.preventDefault();
-  };
+  }, [stopMomentum]);
 
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging.current || !scrollRef.current) return;
     const dx = e.clientX - dragStartX.current;
     if (Math.abs(dx) > 4) hasDragged.current = true;
+    const now = Date.now();
+    const dt = now - lastTime.current || 1;
+    velocity.current = (lastX.current - e.clientX) / dt * 16;
+    lastX.current = e.clientX;
+    lastTime.current = now;
     scrollRef.current.scrollLeft = scrollStartLeft.current - dx;
-  };
+  }, []);
 
-  const onMouseUp = () => {
+  const onMouseUp = useCallback(() => {
+    if (!isDragging.current) return;
     isDragging.current = false;
     setCursor("grab");
-  };
+    if (Math.abs(velocity.current) > 1) {
+      rafId.current = requestAnimationFrame(applyMomentum);
+    } else if (scrollRef.current) {
+      scrollRef.current.style.scrollSnapType = "x mandatory";
+    }
+  }, [applyMomentum]);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
+    if (!isDragging.current) return;
     isDragging.current = false;
     setCursor("grab");
-  };
+    if (Math.abs(velocity.current) > 1) {
+      rafId.current = requestAnimationFrame(applyMomentum);
+    } else if (scrollRef.current) {
+      scrollRef.current.style.scrollSnapType = "x mandatory";
+    }
+  }, [applyMomentum]);
 
   // ── Arrow button scroll ───────────────────────────────────────────────────
   const scroll = (direction: "left" | "right") => {
@@ -85,16 +130,18 @@ export default function CaseStudySlider() {
 
   return (
     <section className="py-24 bg-white select-none overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Top Header Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
-          <div className="lg:col-span-7">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] font-sans">
+      <div className="px-10 md:px-16 lg:px-20 mb-16">
+        {/* Top Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          {/* Left — title */}
+          <div>
+            <h2 className="section-title text-neutral-900 tracking-tight leading-[1.1] font-sans">
               Built for performance<br />designed for conversion
             </h2>
           </div>
-          <div className="lg:col-span-5">
-            <p className="text-neutral-500 text-sm md:text-base leading-relaxed font-sans">
+          {/* Right — description */}
+          <div className="lg:max-w-xs xl:max-w-sm">
+            <p className="text-neutral-500 text-sm leading-relaxed font-sans lg:text-right">
               VenturelyHub takes digital products from raw concepts to institutional-grade systems, combining deep backend engineering with high-fidelity creative design.
             </p>
           </div>
@@ -104,7 +151,7 @@ export default function CaseStudySlider() {
       {/* Horizontal Scrollable Slider — drag enabled */}
       <div
         ref={scrollRef}
-        className="flex gap-8 overflow-x-auto scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-6 md:px-12 lg:px-24 pb-8"
+        className="flex gap-8 overflow-x-auto scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-10 md:px-16 lg:px-20 pb-8"
         style={{ scrollSnapType: "x mandatory", cursor }}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}

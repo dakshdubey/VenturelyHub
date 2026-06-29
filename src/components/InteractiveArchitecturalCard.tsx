@@ -39,7 +39,7 @@ export default function InteractiveArchitecturalCard() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative aspect-square w-full max-w-[500px] mx-auto bg-white border border-[#ECECEC] rounded-[32px] overflow-hidden flex items-center justify-center p-8 md:p-12 shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)] transition-shadow duration-500 cursor-crosshair select-none"
+      className="relative aspect-square w-full max-w-[680px] mx-auto bg-white border border-[#ECECEC] rounded-[40px] overflow-hidden flex items-center justify-center p-8 md:p-14 shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)] transition-shadow duration-500 cursor-crosshair select-none"
       style={{ perspective: "800px" }}
     >
       {/* Background Dot Grid */}
@@ -60,7 +60,7 @@ export default function InteractiveArchitecturalCard() {
         }}
         whileHover={{ scale: 1.05 }}
         transition={{ scale: { type: "spring", stiffness: 200, damping: 18 } }}
-        className="relative w-56 h-56 md:w-64 md:h-64 rounded-full bg-[#262626] flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-neutral-700 overflow-hidden"
+        className="relative w-72 h-72 md:w-80 md:h-80 rounded-full bg-[#262626] flex items-center justify-center shadow-[0_20px_60px_rgba(0,0,0,0.4)] border border-neutral-700 overflow-hidden"
       >
         {/* Specular Light Reflection */}
         <div
@@ -85,7 +85,7 @@ export default function InteractiveArchitecturalCard() {
         </svg>
 
         {/* Dynamic Interactive Inner Geometries */}
-        <div className="relative w-32 h-32 md:w-36 md:h-36 flex items-center justify-center">
+        <div className="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center">
           {/* Layer 1: Outer Square (tilts with mouse) */}
           <motion.div
             style={{ rotate: rotateInnerSquare }}

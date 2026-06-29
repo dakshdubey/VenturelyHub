@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -196,12 +196,370 @@ const serviceCategories = [
   }
 ];
 
+  }
+];
+
+function ServiceCardVisual({ id }: { id: string }) {
+  return (
+    <div className="relative w-full aspect-square bg-[#0B0B0C] border border-[#212124] rounded-[24px] overflow-hidden flex items-center justify-center select-none group">
+      {/* Background Dot Grid */}
+      <div 
+        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#ffffff 1.2px, transparent 1.2px)",
+          backgroundSize: "16px 16px"
+        }}
+      />
+      {/* Glow highlight */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
+
+      {id === "branding" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-600 via-indigo-600 to-cyan-500 opacity-20 blur-xl" />
+          </div>
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="z-10">
+            <circle cx="70" cy="70" r="50" stroke="rgba(255,255,255,0.15)" strokeWidth="1" strokeDasharray="3 3" />
+            <circle cx="70" cy="70" r="30" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+            <line x1="20" y1="70" x2="120" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+            <line x1="70" y1="20" x2="70" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#8B5CF6" />
+                <stop offset="50%" stopColor="#3B82F6" />
+                <stop offset="100%" stopColor="#06B6D4" />
+              </linearGradient>
+            </defs>
+            <path d="M40 40 L70 100 L100 40" stroke="url(#brandGrad)" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="70" cy="100" r="4" fill="#ffffff" className="animate-pulse" />
+          </svg>
+        </div>
+      )}
+
+      {id === "web-dev" && (
+        <div className="relative w-full h-full flex flex-col justify-between p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 opacity-20 blur-xl" />
+          </div>
+          <div className="w-full h-7 rounded-t-lg bg-[#18181B] border-b border-[#2D2D30] flex items-center px-3 gap-1.5 z-10">
+            <div className="w-2 h-2 rounded-full bg-[#EF4444] opacity-85" />
+            <div className="w-2 h-2 rounded-full bg-[#F59E0B] opacity-85" />
+            <div className="w-2 h-2 rounded-full bg-[#10B981] opacity-85" />
+            <div className="ml-2 h-4 w-32 rounded bg-[#09090B] flex items-center justify-center text-[7px] text-neutral-500 font-mono">
+              venturely.io
+            </div>
+          </div>
+          <div className="flex-1 bg-[#18181B]/50 rounded-b-lg border-x border-b border-[#2D2D30] p-4 font-mono text-[9px] text-[#A1A1AA] flex flex-col justify-center gap-1.5 z-10 backdrop-blur-sm">
+            <p className="text-cyan-400">&lt;<span className="text-purple-400">Hero</span> <span className="text-amber-400">title</span>=<span className="text-emerald-400">&quot;Scale&quot;</span>&gt;</p>
+            <p className="pl-3 text-neutral-400">const val = useSpring(0);</p>
+            <p className="pl-3 text-yellow-400">const rotate = useTransform(val);</p>
+            <p className="text-cyan-400">&lt;/<span className="text-purple-400">Hero</span>&gt;</p>
+          </div>
+        </div>
+      )}
+
+      {id === "app-dev" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 opacity-20 blur-xl" />
+          </div>
+          <div className="w-32 h-56 rounded-[24px] border-[3px] border-[#2D2D30] bg-[#121214] p-2.5 flex flex-col gap-2 z-10 shadow-2xl relative">
+            <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-12 h-3.5 rounded-full bg-[#2D2D30] flex items-center justify-center">
+              <div className="w-4 h-1 rounded bg-[#09090B]" />
+            </div>
+            <div className="w-full h-5 rounded-md bg-[#18181B] mt-4 flex items-center px-1.5 justify-between">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#3B82F6]" />
+              <div className="w-12 h-1 rounded bg-neutral-700" />
+            </div>
+            <div className="w-full flex-1 rounded-lg bg-gradient-to-br from-[#1E1B4B] to-[#121214] border border-[#2D2D30] p-2 flex flex-col justify-between">
+              <div className="w-8 h-1 rounded bg-cyan-500" />
+              <div className="w-full h-8 rounded bg-white/5 flex items-center justify-center">
+                <svg width="40" height="15" viewBox="0 0 40 15" fill="none">
+                  <path d="M2 13 L12 4 L22 10 L38 2" stroke="#06B6D4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="w-full h-2 rounded bg-neutral-800" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {id === "uiux" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 opacity-20 blur-xl" />
+          </div>
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="z-10">
+            <path d="M10 20 L130 20" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+            <path d="M20 10 L20 130" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+            <circle cx="40" cy="90" r="4" fill="#10B981" />
+            <circle cx="100" cy="50" r="4" fill="#10B981" />
+            <path d="M40 90 C 60 40, 80 100, 100 50" stroke="#EF4444" strokeWidth="2" fill="none" />
+            <line x1="40" y1="90" x2="60" y2="40" stroke="rgba(255,255,255,0.25)" strokeWidth="1" strokeDasharray="2 2" />
+            <circle cx="60" cy="40" r="2.5" fill="#3B82F6" />
+            <line x1="100" y1="50" x2="80" y2="100" stroke="rgba(255,255,255,0.25)" strokeWidth="1" strokeDasharray="2 2" />
+            <circle cx="80" cy="100" r="2.5" fill="#3B82F6" />
+            <g transform="translate(85, 60)">
+              <polygon points="0,0 12,24 24,18" fill="url(#cursorGrad)" stroke="#ffffff" strokeWidth="1" />
+              <defs>
+                <linearGradient id="cursorGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#EC4899" />
+                  <stop offset="100%" stopColor="#3B82F6" />
+                </linearGradient>
+              </defs>
+            </g>
+          </svg>
+        </div>
+      )}
+
+      {id === "ai-auto" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 opacity-20 blur-xl" />
+          </div>
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="z-10">
+            <path d="M40 40 L70 70 M70 70 L100 40 M70 70 L70 110 M40 40 L70 110 M100 40 L70 110 M40 40 L100 40" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
+            <circle cx="40" cy="40" r="5" fill="#EC4899" />
+            <circle cx="100" cy="40" r="5" fill="#8B5CF6" />
+            <circle cx="70" cy="70" r="8" fill="#3B82F6" className="animate-pulse" />
+            <circle cx="70" cy="110" r="5" fill="#06B6D4" />
+            <circle cx="70" cy="70" r="18" stroke="#8B5CF6" strokeWidth="1" strokeDasharray="4 2" className="animate-[spin_10s_linear_infinite]" />
+            <circle cx="70" cy="70" r="28" stroke="#EC4899" strokeWidth="0.75" strokeDasharray="3 3" className="animate-[spin_15s_linear_infinite_reverse]" />
+          </svg>
+        </div>
+      )}
+
+      {id === "eng" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 opacity-20 blur-xl" />
+          </div>
+          <div className="w-40 bg-[#18181B] rounded-xl border border-[#2D2D30] p-3 font-mono text-[8px] text-neutral-400 z-10 flex flex-col gap-2">
+            <div className="flex justify-between items-center border-b border-[#2D2D30] pb-1.5">
+              <span className="text-neutral-500">API SCHEMA</span>
+              <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold uppercase text-[6px]">ACTIVE</span>
+            </div>
+            <div className="space-y-1">
+              <p><span className="text-purple-400">interface</span> <span className="text-yellow-300">User</span> &#123;</p>
+              <p className="pl-3">id: <span className="text-blue-400">string</span>;</p>
+              <p className="pl-3">role: <span className="text-emerald-400">&quot;admin&quot;</span>;</p>
+              <p>&#125;</p>
+            </div>
+            <div className="border-t border-[#2D2D30] pt-1.5 flex items-center gap-1.5 text-neutral-500">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+              <span>POST /v1/auth/session</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {id === "cloud" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 opacity-20 blur-xl" />
+          </div>
+          <div className="w-36 h-40 bg-[#141416] rounded-xl border border-[#2D2D30] p-3.5 flex flex-col justify-between z-10">
+            <div className="w-full h-8 rounded bg-[#1C1C1E] border border-neutral-800 flex items-center justify-between px-2.5">
+              <div className="flex gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="w-6 h-1 rounded bg-neutral-700" />
+              </div>
+              <div className="flex gap-1">
+                <div className="w-1 h-1 rounded-full bg-blue-500" />
+                <div className="w-1 h-1 rounded-full bg-neutral-600" />
+              </div>
+            </div>
+            <div className="w-full h-8 rounded bg-[#1C1C1E] border border-neutral-800 flex items-center justify-between px-2.5">
+              <div className="flex gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="w-6 h-1 rounded bg-neutral-700" />
+              </div>
+              <div className="flex gap-1">
+                <div className="w-1 h-1 rounded-full bg-blue-500" />
+                <div className="w-1 h-1 rounded-full bg-neutral-600" />
+              </div>
+            </div>
+            <div className="w-full h-8 rounded bg-[#1C1C1E] border border-neutral-800 flex items-center justify-between px-2.5">
+              <div className="flex gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" />
+                <div className="w-6 h-1 rounded bg-neutral-700" />
+              </div>
+              <div className="flex gap-1">
+                <div className="w-1 h-1 rounded-full bg-neutral-600" />
+                <div className="w-1 h-1 rounded-full bg-neutral-600" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {id === "startup" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-500 via-orange-600 to-red-500 opacity-20 blur-xl" />
+          </div>
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="z-10">
+            <path d="M20 120 Q 60 110, 80 70 T 120 20" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="4 2" />
+            <path d="M20 120 Q 60 110, 80 70 T 120 20" stroke="url(#startupGrad)" strokeWidth="3" strokeLinecap="round" />
+            <g transform="translate(55, 35) scale(0.65)">
+              <path d="M19 2 L1 26 L13 26 L9 46 L31 20 L17 20 Z" fill="#FBBF24" stroke="#ffffff" strokeWidth="2" strokeLinejoin="round" />
+            </g>
+            <defs>
+              <linearGradient id="startupGrad" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%" stopColor="#F59E0B" />
+                <stop offset="100%" stopColor="#EF4444" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      )}
+
+      {id === "marketing" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 opacity-20 blur-xl" />
+          </div>
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="z-10">
+            <path d="M20 110 L45 85 L70 95 L95 60 L120 40" stroke="#10B981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="120" cy="40" r="5" fill="#ffffff" />
+            <circle cx="120" cy="40" r="10" stroke="#10B981" strokeWidth="1" className="animate-ping" />
+            <path d="M20 110 L45 85 L70 95 L95 60 L120 40 L120 120 L20 120 Z" fill="url(#analyticsGrad)" opacity="0.1" />
+            <line x1="20" y1="120" x2="120" y2="120" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <line x1="20" y1="20" x2="20" y2="120" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <defs>
+              <linearGradient id="analyticsGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#10B981" />
+                <stop offset="100%" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      )}
+
+      {id === "content" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 opacity-20 blur-xl" />
+          </div>
+          <div className="relative w-28 h-28 rounded-full bg-gradient-to-tr from-pink-600 via-purple-600 to-cyan-400 z-10 shadow-2xl flex items-center justify-center border border-white/20">
+            <div className="absolute w-20 h-20 rounded-full border border-white/30 backdrop-blur-sm bg-white/5 rotate-45 transform translate-x-3 -translate-y-3" />
+            <div className="absolute top-4 left-6 w-8 h-8 rounded-full bg-white/25 blur-sm" />
+          </div>
+        </div>
+      )}
+
+      {id === "creative" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 opacity-20 blur-xl" />
+          </div>
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="z-10">
+            <path d="M70 70 A10 10 0 0 0 80 70 A20 20 0 0 0 60 70 A40 40 0 0 0 100 70 A80 80 0 0 0 20 70" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+            <rect x="30" y="30" width="80" height="80" stroke="#8B5CF6" strokeWidth="1" />
+            <rect x="50" y="50" width="40" height="40" stroke="#A78BFA" strokeWidth="0.75" />
+            <circle cx="70" cy="70" r="40" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+          </svg>
+        </div>
+      )}
+
+      {id === "copy" && (
+        <div className="relative w-full h-full flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-600 opacity-20 blur-xl" />
+          </div>
+          <div className="w-36 flex flex-col gap-2.5 z-10 bg-[#141416] p-4 rounded-xl border border-[#2D2D30]">
+            <div className="w-8 h-2 rounded bg-cyan-400" />
+            <div className="w-full h-1.5 rounded bg-neutral-700" />
+            <div className="w-full h-1.5 rounded bg-neutral-700" />
+            <div className="w-4/5 h-1.5 rounded bg-neutral-800" />
+            <div className="w-full h-1.5 rounded bg-neutral-700 mt-1" />
+            <div className="w-2/3 h-1.5 rounded bg-neutral-800" />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   const toggleCategory = (id: string) => {
-    setExpandedCategory(expandedCategory === id ? null : id);
+    setExpandedCategory((prev) => (prev === id ? null : id));
   };
+
+  // ── Services carousel drag-to-scroll with momentum ───────────────────────
+  const svcRef = useRef<HTMLDivElement>(null);
+  const svcDragging = useRef(false);
+  const svcStartX = useRef(0);
+  const svcScrollLeft = useRef(0);
+  const svcHasDragged = useRef(false);
+  const svcVelocity = useRef(0);
+  const svcLastX = useRef(0);
+  const svcLastTime = useRef(0);
+  const svcRafId = useRef<number | null>(null);
+  const [svcCursor, setSvcCursor] = useState<"grab" | "grabbing">("grab");
+
+  const svcStopMomentum = useCallback(() => {
+    if (svcRafId.current !== null) {
+      cancelAnimationFrame(svcRafId.current);
+      svcRafId.current = null;
+    }
+  }, []);
+
+  const svcApplyMomentum = useCallback(() => {
+    if (!svcRef.current) return;
+    svcVelocity.current *= 0.92; // friction
+    if (Math.abs(svcVelocity.current) < 0.5) {
+      // re-enable snap once settled
+      svcRef.current.style.scrollSnapType = "x mandatory";
+      svcRafId.current = null;
+      return;
+    }
+    svcRef.current.scrollLeft += svcVelocity.current;
+    svcRafId.current = requestAnimationFrame(svcApplyMomentum);
+  }, []);
+
+  const onSvcMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!svcRef.current) return;
+    svcStopMomentum();
+    svcDragging.current = true;
+    svcHasDragged.current = false;
+    svcStartX.current = e.clientX;
+    svcLastX.current = e.clientX;
+    svcLastTime.current = Date.now();
+    svcScrollLeft.current = svcRef.current.scrollLeft;
+    svcVelocity.current = 0;
+    // disable snap during drag for smooth free scroll
+    svcRef.current.style.scrollSnapType = "none";
+    setSvcCursor("grabbing");
+    e.preventDefault();
+  }, [svcStopMomentum]);
+
+  const onSvcMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!svcDragging.current || !svcRef.current) return;
+    const dx = e.clientX - svcStartX.current;
+    if (Math.abs(dx) > 4) svcHasDragged.current = true;
+    // track velocity
+    const now = Date.now();
+    const dt = now - svcLastTime.current || 1;
+    svcVelocity.current = (svcLastX.current - e.clientX) / dt * 16; // scale to ~60fps
+    svcLastX.current = e.clientX;
+    svcLastTime.current = now;
+    svcRef.current.scrollLeft = svcScrollLeft.current - dx;
+  }, []);
+
+  const onSvcMouseUp = useCallback(() => {
+    if (!svcDragging.current) return;
+    svcDragging.current = false;
+    setSvcCursor("grab");
+    // launch momentum scroll
+    if (Math.abs(svcVelocity.current) > 1) {
+      svcRafId.current = requestAnimationFrame(svcApplyMomentum);
+    } else if (svcRef.current) {
+      svcRef.current.style.scrollSnapType = "x mandatory";
+    }
+  }, [svcApplyMomentum]);
 
   return (
     <div className="bg-white min-h-screen text-[#111111] selection:bg-neutral-900 selection:text-white">
@@ -332,15 +690,16 @@ export default function Home() {
         id="services"
         className="py-24 md:py-32 bg-white"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-8 border-b border-[#ECECEC]">
+        <div className="px-10 md:px-16 lg:px-20 mb-12 pb-8 border-b border-[#ECECEC]">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            {/* Left — label + title */}
             <div>
               <span className="small-label">Capabilities</span>
               <h2 className="section-title mt-2 text-neutral-900 uppercase tracking-tight">ENGINEERING &amp; CREATIVE SERVICES</h2>
             </div>
-            <div className="flex flex-col items-start md:items-end gap-4">
-              <p className="body-text max-w-md md:text-right">
+            {/* Right — description + arrows */}
+            <div className="flex flex-col items-start lg:items-end gap-4 lg:max-w-xs xl:max-w-sm">
+              <p className="body-text lg:text-right">
                 We have structured our multi-disciplinary capabilities into 12 core divisions to take startups from idea to institutional grade.
               </p>
               {/* Arrow navigation */}
@@ -372,74 +731,56 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scrollable carousel — bleeds full width */}
+        {/* Scrollable carousel — bleeds full width, drag enabled */}
         <div
           id="svc-carousel"
-          className="flex gap-5 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-24 pb-4"
-          style={{ scrollSnapType: "x mandatory" }}
+          ref={svcRef}
+          className="flex gap-5 overflow-x-auto scrollbar-hide px-10 md:px-16 lg:px-20 pb-4 select-none"
+          style={{ scrollSnapType: "x mandatory", cursor: svcCursor }}
+          onMouseDown={onSvcMouseDown}
+          onMouseMove={onSvcMouseMove}
+          onMouseUp={onSvcMouseUp}
+          onMouseLeave={onSvcMouseUp}
         >
           {serviceCategories.map((category) => {
-            const Icon = category.icon;
             const isExpanded = expandedCategory === category.id;
-
-            // Unique gradient per card for visual variety
-            const gradients = [
-              "from-neutral-800 to-neutral-950",
-              "from-slate-700 to-slate-950",
-              "from-zinc-700 to-zinc-950",
-              "from-stone-700 to-stone-950",
-              "from-neutral-700 to-neutral-950",
-              "from-gray-700 to-gray-950",
-              "from-neutral-800 to-zinc-950",
-              "from-slate-800 to-neutral-950",
-              "from-zinc-800 to-slate-950",
-              "from-stone-800 to-neutral-950",
-              "from-neutral-900 to-stone-950",
-              "from-gray-800 to-zinc-950",
-            ];
-            const idx = serviceCategories.indexOf(category);
-            const grad = gradients[idx % gradients.length];
 
             return (
               <div
                 key={category.id}
-                className="shrink-0 w-[300px] md:w-[320px] bg-white rounded-3xl border border-[#ECECEC] overflow-hidden flex flex-col cursor-pointer hover:shadow-[0_8px_40px_rgba(0,0,0,0.10)] transition-all duration-300 group"
+                className="shrink-0 w-[300px] md:w-[340px] flex flex-col group cursor-pointer"
                 style={{ scrollSnapAlign: "start" }}
-                onClick={() => toggleCategory(category.id)}
+                onClickCapture={(e) => { if (svcHasDragged.current) { e.stopPropagation(); return; } toggleCategory(category.id); }}
               >
-                {/* Dark visual header */}
-                <div className={`relative h-44 bg-gradient-to-br ${grad} flex items-center justify-center overflow-hidden`}>
-                  {/* Subtle grid overlay */}
-                  <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <pattern id={`grid-${category.id}`} width="24" height="24" patternUnits="userSpaceOnUse">
-                        <path d="M 24 0 L 0 0 0 24" fill="none" stroke="white" strokeWidth="0.5"/>
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill={`url(#grid-${category.id})`}/>
-                  </svg>
-                  {/* Icon centered */}
-                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                    <Icon size="28" color="white" variant="Bulk" />
-                  </div>
-                  {/* Premium badge */}
+                {/* Visual Image Header */}
+                <div className="relative aspect-square w-full mb-5 transition-transform duration-500 ease-out group-hover:scale-[1.015]">
+                  <ServiceCardVisual id={category.id} />
+                  {/* Premium Badge */}
                   {category.premium && (
-                    <div className="absolute top-3 right-3 bg-white/15 border border-white/25 backdrop-blur-sm rounded-full px-2.5 py-1">
-                      <span className="font-mono text-[10px] text-white font-bold tracking-wider">★ FLAGSHIP</span>
+                    <div className="absolute top-4 right-4 bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1 z-20">
+                      <span className="font-mono text-[9px] text-white font-bold tracking-widest">★ FLAGSHIP</span>
                     </div>
                   )}
                 </div>
 
-                {/* Card body */}
-                <div className="flex flex-col flex-1 p-6">
-                  <h3 className="text-base font-bold tracking-tight text-neutral-900 mb-2 leading-snug">
+                {/* Card Content */}
+                <div className="flex flex-col flex-1 px-1">
+                  <h3 className="text-xl font-bold tracking-tight text-neutral-900 mb-1.5 leading-snug group-hover:text-neutral-700 transition-colors font-sans">
                     {category.title}
                   </h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed flex-1 line-clamp-3">
+
+                  {/* Metadata/Sub-details */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold font-mono tracking-widest uppercase text-neutral-400">
+                      {category.premium ? "FLAGSHIP CAPABILITY" : "SERVICE DIVISION"}
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-neutral-500 leading-relaxed line-clamp-3 mb-4 font-sans">
                     {category.description}
                   </p>
 
-                  {/* Expandable services list */}
+                  {/* Expandable details list */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.ul
@@ -447,10 +788,10 @@ export default function Home() {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden mt-4 space-y-2 border-t border-[#ECECEC] pt-4"
+                        className="overflow-hidden mb-4 space-y-2 border-t border-[#ECECEC] pt-4"
                       >
                         {category.details.map((detail, i) => (
-                          <li key={i} className="flex items-center gap-2 text-xs text-neutral-700 font-medium">
+                          <li key={i} className="flex items-center gap-2 text-xs text-neutral-700 font-medium font-sans">
                             <TickCircle size="14" className="text-neutral-900 shrink-0" variant="Bold" />
                             {detail}
                           </li>
@@ -459,12 +800,9 @@ export default function Home() {
                     )}
                   </AnimatePresence>
 
-                  {/* Footer */}
-                  <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#F5F5F5]">
-                    <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-neutral-400">
-                      {category.premium ? "FLAGSHIP CAPABILITY" : "SERVICE DIVISION"}
-                    </span>
-                    <span className="text-xs text-[#0F62FE] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                  {/* Read Link */}
+                  <div className="mt-auto pt-1 w-fit">
+                    <span className="text-xs font-bold tracking-wider text-neutral-900 uppercase flex items-center gap-1 hover:gap-2 transition-all border-b border-transparent hover:border-neutral-900 pb-0.5 font-sans">
                       VIEW DETAILS
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </span>
@@ -649,16 +987,16 @@ export default function Home() {
       {/* TRUST & ENGINEERING EXCELLENCE SECTION */}
       <section
         id="trust"
-        className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-white"
+        className="py-24 md:py-32 px-10 md:px-16 lg:px-20 bg-white"
       >
-        <div className="max-w-7xl mx-auto">
+        <div>
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 pb-8 border-b border-[#ECECEC]">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-20 pb-8 border-b border-[#ECECEC]">
             <div>
               <span className="small-label">Our Architecture</span>
               <h2 className="section-title mt-2 text-neutral-900 uppercase tracking-tight">RIGOROUS ENGINEERING METHODOLOGY</h2>
             </div>
-            <p className="body-text max-w-md">
+            <p className="body-text lg:max-w-xs xl:max-w-sm lg:text-right">
               We stand apart because we enforce software engineering principles that guarantee ownership, performance, and long-term viability.
             </p>
           </div>
@@ -813,9 +1151,9 @@ export default function Home() {
       {/* ABOUT SECTION */}
       <section
         id="about"
-        className="py-24 md:py-36 px-6 md:px-12 lg:px-24 bg-white border-t border-[#ECECEC]"
+        className="py-24 md:py-36 px-10 md:px-16 lg:px-20 bg-white border-t border-[#ECECEC]"
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="small-label">About Venturely Hub</span>
             <h2 className="section-title mt-4 text-neutral-900 uppercase tracking-tight leading-none mb-8">
@@ -849,8 +1187,8 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-[#ECECEC] pt-24 pb-12 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto">
+      <footer className="bg-white border-t border-[#ECECEC] pt-24 pb-12 px-10 md:px-16 lg:px-20">
+        <div>
           {/* Top Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
             <div>
@@ -891,7 +1229,7 @@ export default function Home() {
           </div>
 
           {/* Bottom Section */}
-          <div className="border-t border-[#ECECEC] pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-mono text-neutral-400">
+          <div className="border-t border-[#ECECEC] pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] font-sans text-neutral-400">
             <div className="flex items-center gap-3">
               <Image
                 src="/assets/venturely.jpeg"
@@ -900,10 +1238,10 @@ export default function Home() {
                 height={28}
                 className="rounded-lg grayscale hairline-border"
               />
-              <span className="font-bold tracking-widest text-neutral-900">VENTURELY HUB</span>
+              <span className="font-bold tracking-[0.18em] text-neutral-900 text-[11px] uppercase">VENTURELY HUB</span>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 tracking-wide">
               <span>&copy; {new Date().getFullYear()} VENTURELY HUB INC.</span>
               <a href="#" className="hover:text-neutral-900 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-neutral-900 transition-colors">Terms of Service</a>
