@@ -561,11 +561,39 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen text-[#111111] selection:bg-neutral-900 selection:text-white">
       {/* HEADER / FLOATING NAV CONTAINER */}
-      <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-        <div className="pointer-events-auto">
+      <header className="fixed top-6 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-20 pointer-events-none">
+        {/* Left Side: Brand Logo */}
+        <div className="hidden md:flex items-center gap-2 pointer-events-auto">
+          <a href="#home" className="flex items-center gap-2.5 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full border border-[#ECECEC] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-neutral-300 transition-colors group">
+            <Image
+              src="/assets/venturely.jpeg"
+              alt="Venturely Hub Logo"
+              width={20}
+              height={20}
+              className="rounded-md grayscale group-hover:grayscale-0 transition-all duration-300"
+            />
+            <span className="font-extrabold tracking-[0.18em] text-neutral-900 text-[10px] uppercase font-sans">VENTURELY</span>
+          </a>
+        </div>
+
+        {/* Center: Navigation Bar */}
+        <div className="pointer-events-auto mx-auto md:mx-0">
           <GooeyNav items={navItems} />
         </div>
+
+        {/* Right Side: Login Button */}
+        <div className="pointer-events-auto flex justify-end">
+          <a 
+            href="#login" 
+            className="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-neutral-800 transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-neutral-800 font-sans"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span className="hidden sm:inline">Login as Client</span>
+            <span className="inline sm:hidden">Login</span>
+          </a>
+        </div>
       </header>
+
 
       {/* HERO SECTION */}
       <section
