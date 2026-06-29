@@ -502,7 +502,8 @@ export default function Home() {
               We engineer proprietary SDKs, internal frameworks, and software modules designed specifically for your business. Own your code, remove external dependencies, and scale indefinitely.
             </p>
           </div>
-          {/* Right — visual panel styled like premium term          <div className="flex items-center justify-center bg-white px-8 md:px-14 min-h-[60vh] lg:min-h-screen">
+          {/* Right — visual panel styled like premium terminal */}
+          <div className="flex items-center justify-center bg-white px-8 md:px-14 min-h-[60vh] lg:min-h-screen">
             <div className="w-full rounded-[32px] bg-black p-10 md:p-14 flex items-center justify-center shadow-2xl relative overflow-hidden" style={{minHeight: '520px'}}>
               {/* Starry background effect */}
               <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
@@ -524,13 +525,12 @@ export default function Home() {
                   <p className="pl-6"><span className="text-blue-300">encryption</span><span className="text-white">:</span> <span className="text-orange-400">true</span><span className="text-white">,</span></p>
                   <p><span className="text-white">{"});"}</span></p>
                   <p className="text-neutral-600">&nbsp;</p>
-                  <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}}</span></p>
-                  <p className="pl-6"><span className="text-blue-400">return</span> <span className="text-white">sdk.</span><span className="text-yellow-300">transform</span><span className="text-white">(data, {"{ "} <span className="text-blue-300">secure</span>: <span className="text-orange-400">true</span> {"}"});</span></p>
+                  <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}</span></p>
+                  <p className="pl-6"><span className="text-blue-400">return</span> <span className="text-white">{"sdk.transform(data, { secure: true });"}</span></p>
                   <p><span className="text-white">{"}"}</span></p>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
 
