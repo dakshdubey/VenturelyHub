@@ -546,32 +546,32 @@ export default function Home() {
             </p>
           </div>
           {/* Right — visual panel styled like the premium glowing bordered mockup */}
-          <div className="flex items-center justify-center bg-white p-6 md:p-12 min-h-[60vh] lg:min-h-screen">
-            <div className="w-full max-w-2xl aspect-[4/3] rounded-[32px] bg-neutral-100 p-8 md:p-12 flex items-center justify-center shadow-sm relative overflow-hidden border border-neutral-200/50">
+          <div className="flex items-center justify-center bg-white px-8 md:px-14 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full rounded-[32px] bg-neutral-100 p-10 md:p-14 flex items-center justify-center shadow-sm relative overflow-hidden border border-neutral-200/50" style={{minHeight: '520px'}}>
               {/* Soft glow border background */}
               <div className="absolute inset-2 rounded-[24px] bg-[conic-gradient(from_0deg,#ffeedd,#e0f0ff,#ffe6f0,#ffeedd)] opacity-50 blur-xl pointer-events-none" />
               
               {/* Inside card */}
               <div className="w-full rounded-2xl border border-neutral-200/80 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden relative z-10">
-                <div className="flex items-center justify-between px-6 py-4 border-b border-[#ECECEC]">
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-neutral-900 flex items-center justify-center">
-                      <span className="text-white text-[8px] font-black">Y</span>
+                <div className="flex items-center justify-between px-8 py-5 border-b border-[#ECECEC]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-full bg-neutral-900 flex items-center justify-center">
+                      <span className="text-white text-xs font-black">Y</span>
                     </div>
-                    <span className="text-sm font-bold text-neutral-900">YourBrand</span>
+                    <span className="text-base font-bold text-neutral-900">YourBrand</span>
                   </div>
-                  <div className="flex gap-4 items-center text-xs text-neutral-400">
+                  <div className="flex gap-4 items-center text-sm text-neutral-400">
                     <span className="text-neutral-900 font-semibold">Settings</span>
                   </div>
                 </div>
-                <div className="p-6 space-y-4">
-                  <div className="h-2 bg-neutral-100 rounded-full w-2/3" />
-                  <div className="h-2 bg-neutral-100 rounded-full w-1/2" />
-                  <div className="grid grid-cols-3 gap-3 mt-4">
+                <div className="p-8 space-y-5">
+                  <div className="h-2.5 bg-neutral-100 rounded-full w-2/3" />
+                  <div className="h-2.5 bg-neutral-100 rounded-full w-1/2" />
+                  <div className="grid grid-cols-3 gap-4 mt-6">
                     {["Users", "Revenue", "Growth"].map(l => (
-                      <div key={l} className="rounded-lg border border-[#ECECEC] p-4 bg-white">
-                        <div className="text-[10px] text-neutral-400 mb-1">{l}</div>
-                        <div className="text-base font-black text-neutral-900">—</div>
+                      <div key={l} className="rounded-xl border border-[#ECECEC] p-6 bg-white">
+                        <div className="text-xs text-neutral-400 mb-2">{l}</div>
+                        <div className="text-2xl font-black text-neutral-900">—</div>
                       </div>
                     ))}
                   </div>
@@ -593,18 +593,18 @@ export default function Home() {
             </p>
           </div>
           {/* Right — visual panel styled like blue radial glow core */}
-          <div className="flex items-center justify-center bg-white p-6 md:p-12 min-h-[60vh] lg:min-h-screen">
-            <div className="w-full max-w-2xl aspect-[4/3] rounded-[32px] bg-[#060814] flex items-center justify-center relative overflow-hidden shadow-xl">
+          <div className="flex items-center justify-center bg-white px-8 md:px-14 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full rounded-[32px] bg-[#060814] flex items-center justify-center relative overflow-hidden shadow-2xl" style={{minHeight: '520px'}}>
               {/* Starry background dots */}
               <div className="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
               
               {/* Radial blue core */}
-              <div className="relative w-80 h-80 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(30,80,255,0.45)_0%,rgba(10,20,80,0.25)_50%,transparent_80%)] blur-2xl" />
-                <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(80,120,255,0.3)_0%,transparent_70%)] blur-xl" />
+              <div className="relative w-[420px] h-[420px] flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(30,80,255,0.5)_0%,rgba(10,20,80,0.25)_50%,transparent_80%)] blur-3xl" />
+                <div className="absolute inset-10 rounded-full bg-[radial-gradient(circle,rgba(80,120,255,0.35)_0%,transparent_70%)] blur-2xl" />
                 <div className="relative z-10 text-center">
-                  <p className="text-white text-xl font-bold tracking-tight">Venturely AI</p>
-                  <p className="text-blue-300 text-xs mt-1 opacity-60">Infrastructure Engine</p>
+                  <p className="text-white text-3xl font-bold tracking-tight">Venturely AI</p>
+                  <p className="text-blue-300 text-sm mt-2 opacity-70">Infrastructure Engine</p>
                 </div>
               </div>
             </div>
