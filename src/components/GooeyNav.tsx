@@ -132,6 +132,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     }
   };
 
+  const activeIndexRef = useRef(activeIndex);
+  
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
   useEffect(() => {
     if (!navRef.current || !containerRef.current) return;
     const activeLi = navRef.current.querySelectorAll('li')[activeIndex] as HTMLElement;
@@ -148,10 +154,15 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     });
     resizeObserver.observe(containerRef.current);
 
-    // Setup IntersectionObserver to track scroll position and update active index automatically
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [activeIndex]);
+
+  useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -60% 0px',
+      rootMargin: '-30% 0px -50% 0px',
       threshold: 0
     };
 
@@ -160,12 +171,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         if (entry.isIntersecting) {
           const id = `#${entry.target.id}`;
           const itemIndex = items.findIndex(item => item.href === id);
-          if (itemIndex !== -1 && itemIndex !== activeIndex) {
+          if (itemIndex !== -1 && itemIndex !== activeIndexRef.current) {
             setActiveIndex(itemIndex);
-            const targetLi = navRef.current?.querySelectorAll('li')[itemIndex] as HTMLElement;
-            if (targetLi) {
-              updateEffectPosition(targetLi);
-            }
           }
         }
       });
@@ -178,10 +185,9 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     });
 
     return () => {
-      resizeObserver.disconnect();
       observer.disconnect();
     };
-  }, [activeIndex, items]);
+  }, [items]);
 
   return (
     <>

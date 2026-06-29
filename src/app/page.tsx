@@ -425,12 +425,13 @@ export default function Home() {
               );
 
               return (
-                <div key={category.id} className="relative">
+                <div key={category.id} className="relative h-full">
                   <ElectricBorder
                     color="#111111"
                     borderRadius={24}
                     chaos={0.08}
                     speed={0.8}
+                    className="h-full"
                   >
                     {CardContent}
                   </ElectricBorder>
@@ -662,47 +663,67 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-[#ECECEC] py-16 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-          <div className="flex flex-col gap-4">
+      <footer className="bg-white border-t border-[#ECECEC] pt-24 pb-12 px-6 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Top Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 font-display">
+                Ready to scale?<br />Let&apos;s build.
+              </h2>
+              <p className="body-text mt-4 max-w-sm">
+                Partner with Venturely Hub to design, engineer, and launch digital products that define your category.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+              <div className="flex flex-col gap-3">
+                <span className="font-mono text-xs text-neutral-400 font-bold uppercase tracking-wider">Company</span>
+                <a href="#about" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">About Us</a>
+                <a href="#trust" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">Why Venturely</a>
+                <a href="mailto:hello@venturelyhub.com" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">Contact Us</a>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="font-mono text-xs text-neutral-400 font-bold uppercase tracking-wider">Services</span>
+                <a href="#services" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">Website Design</a>
+                <a href="#services" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">App Development</a>
+                <a href="#services" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">AI & Automation</a>
+              </div>
+              <div className="flex flex-col gap-3 col-span-2 md:col-span-1">
+                <span className="font-mono text-xs text-neutral-400 font-bold uppercase tracking-wider">Location</span>
+                <span className="text-sm text-neutral-500 cursor-default">San Francisco, CA</span>
+                <span className="text-sm text-neutral-500 cursor-default">Remote Global</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Massive Typographic Branding */}
+          <div className="w-full border-t border-[#ECECEC] pt-12 pb-16 overflow-hidden select-none">
+            <h1 className="text-[12vw] font-black tracking-tighter text-neutral-900 leading-none text-center font-display lowercase select-none">
+              venturely<span className="text-[#0F62FE]">.</span>
+            </h1>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-[#ECECEC] pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-mono text-neutral-400">
             <div className="flex items-center gap-3">
               <Image
                 src="/assets/venturely.jpeg"
                 alt="Venturely Hub Logo"
-                width={40}
-                height={40}
-                className="rounded-xl grayscale hairline-border"
+                width={28}
+                height={28}
+                className="rounded-lg grayscale hairline-border"
               />
-              <span className="font-mono text-lg font-bold tracking-widest text-neutral-900">VENTURELY HUB</span>
+              <span className="font-bold tracking-widest text-neutral-900">VENTURELY HUB</span>
             </div>
-            <p className="text-sm text-neutral-500 max-w-sm">
-              We help startups and enterprises build, launch, and grow robust digital products with premium engineering standards.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
-            <div className="flex flex-col gap-3">
-              <span className="font-mono text-xs text-neutral-400 font-bold uppercase tracking-wider">NAVIGATE</span>
-              <a href="#home" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">Home</a>
-              <a href="#services" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">Services</a>
-              <a href="#trust" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">Why Us</a>
-              <a href="#about" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">About</a>
-            </div>
-            <div className="flex flex-col gap-3">
-              <span className="font-mono text-xs text-neutral-400 font-bold uppercase tracking-wider">LEGAL</span>
-              <span className="text-sm text-neutral-500 cursor-default">Privacy Policy</span>
-              <span className="text-sm text-neutral-500 cursor-default">Terms of Service</span>
-            </div>
-            <div className="flex flex-col gap-3 col-span-2 sm:col-span-1">
-              <span className="font-mono text-xs text-neutral-400 font-bold uppercase tracking-wider">LOCATION</span>
-              <span className="text-sm text-neutral-500 cursor-default">San Francisco, CA</span>
-              <span className="text-sm text-neutral-500 cursor-default">Remote Global</span>
+            
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+              <span>&copy; {new Date().getFullYear()} VENTURELY HUB INC.</span>
+              <a href="#" className="hover:text-neutral-900 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-neutral-900 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-neutral-900 transition-colors">Cookie Settings</a>
             </div>
           </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto border-t border-[#ECECEC] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-neutral-400">
-          <span>&copy; {new Date().getFullYear()} VENTURELY HUB INC. ALL RIGHTS RESERVED.</span>
-          <span>CRAFTED IN SILICON VALLEY WITH PRECISION</span>
         </div>
       </footer>
     </div>
