@@ -42,6 +42,41 @@ const caseStudies: CaseStudy[] = [
 export default function CaseStudySlider() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // ── Drag-to-scroll state ──────────────────────────────────────────────────
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const scrollStartLeft = useRef(0);
+  const hasDragged = useRef(false);
+  const [cursor, setCursor] = useState<"grab" | "grabbing">("grab");
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    dragStartX.current = e.clientX;
+    scrollStartLeft.current = scrollRef.current.scrollLeft;
+    setCursor("grabbing");
+    e.preventDefault();
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    const dx = e.clientX - dragStartX.current;
+    if (Math.abs(dx) > 4) hasDragged.current = true;
+    scrollRef.current.scrollLeft = scrollStartLeft.current - dx;
+  };
+
+  const onMouseUp = () => {
+    isDragging.current = false;
+    setCursor("grab");
+  };
+
+  const onMouseLeave = () => {
+    isDragging.current = false;
+    setCursor("grab");
+  };
+
+  // ── Arrow button scroll ───────────────────────────────────────────────────
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
     const amount = direction === "left" ? -760 : 760;
@@ -66,14 +101,18 @@ export default function CaseStudySlider() {
         </div>
       </div>
 
-      {/* Horizontal Scrollable Slider Bleeding Full Width */}
+      {/* Horizontal Scrollable Slider — drag enabled */}
       <div
         ref={scrollRef}
         className="flex gap-8 overflow-x-auto scrollbar-hide [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-6 md:px-12 lg:px-24 pb-8"
-        style={{ scrollSnapType: "x mandatory" }}
+        style={{ scrollSnapType: "x mandatory", cursor }}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseLeave}
       >
         {caseStudies.map((item) => (
-          <CaseStudyCard key={item.id} item={item} />
+          <CaseStudyCard key={item.id} item={item} hasDragged={hasDragged} />
         ))}
       </div>
 
@@ -102,7 +141,7 @@ export default function CaseStudySlider() {
   );
 }
 
-function CaseStudyCard({ item }: { item: CaseStudy }) {
+function CaseStudyCard({ item, hasDragged }: { item: CaseStudy; hasDragged: React.MutableRefObject<boolean> }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -136,8 +175,9 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
 
   return (
     <div
-      className="shrink-0 w-[90vw] sm:w-[680px] md:w-[760px] lg:w-[840px] flex flex-col gap-5 group cursor-pointer"
-      style={{ scrollSnapAlign: "start" }}
+      className="shrink-0 w-[90vw] sm:w-[680px] md:w-[760px] lg:w-[840px] flex flex-col gap-5 group"
+      style={{ scrollSnapAlign: "start", pointerEvents: "auto" }}
+      onClickCapture={(e) => { if (hasDragged.current) e.stopPropagation(); }}
     >
       {/* Static Image Card (No tilt/scale) */}
       <div
@@ -152,6 +192,7 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
           alt={item.role}
           fill
           className="object-cover object-center"
+          draggable={false}
         />
 
         {/* Subtle Dark Gradient overlay */}
