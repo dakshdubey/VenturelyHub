@@ -63,139 +63,138 @@ export default function ParticleInteractiveCards() {
     for (let i = 0; i < numPts; i++) {
       const t = i / numPts;
       let x = 0.16;
-      let y = 0.25 + t * 0.5;
+      const y = 0.25 + t * 0.5;
       if (t < 0.2) x = 0.16 + Math.pow(1 - t / 0.2, 2) * 0.06;
       else if (t > 0.8) x = 0.16 + Math.pow((t - 0.8) / 0.2, 2) * 0.06;
       else if (t >= 0.45 && t <= 0.55) x = 0.16 - Math.sin(((t - 0.45) / 0.1) * Math.PI) * 0.035;
       bracketPoints.push({ x: x + (Math.random() - 0.5) * 0.015, y: y + (Math.random() - 0.5) * 0.015, side: "left" });
     }
-    // Right } on left half
-    for (let i = 0; i < numPts; i++) {
-      const t = i / numPts;
-      let x = 0.36;
-      let y = 0.25 + t * 0.5;
-      if (t < 0.2) x = 0.36 - Math.pow(1 - t / 0.2, 2) * 0.06;
-      else if (t > 0.8) x = 0.36 - Math.pow((t - 0.8) / 0.2, 2) * 0.06;
-      else if (t >= 0.45 && t <= 0.55) x = 0.36 + Math.sin(((t - 0.45) / 0.1) * Math.PI) * 0.035;
-      bracketPoints.push({ x: x + (Math.random() - 0.5) * 0.015, y: y + (Math.random() - 0.5) * 0.015, side: "left" });
-    }
+      // Right } on left half
+      for (let i = 0; i < numPts; i++) {
+        const t = i / numPts;
+        let x = 0.36;
+        const y = 0.25 + t * 0.5;
+        if (t < 0.2) x = 0.36 - Math.pow(1 - t / 0.2, 2) * 0.06;
+        else if (t > 0.8) x = 0.36 - Math.pow((t - 0.8) / 0.2, 2) * 0.06;
+        else if (t >= 0.45 && t <= 0.55) x = 0.36 + Math.sin(((t - 0.45) / 0.1) * Math.PI) * 0.035;
+        bracketPoints.push({ x: x + (Math.random() - 0.5) * 0.015, y: y + (Math.random() - 0.5) * 0.015, side: "left" });
+      }
 
-    // ── Right side hover shape: 6 orbital circles ──
-    const orbitPoints: { x: number; y: number; side: "right" }[] = [];
-    const numCircles = 6;
-    const ptsPerCircle = 55;
-    for (let c = 0; c < numCircles; c++) {
-      const angle = (c / numCircles) * Math.PI * 2;
-      const cx = 0.75 + Math.cos(angle) * 0.085;
-      const cy = 0.5 + Math.sin(angle) * 0.2;
-      for (let p = 0; p < ptsPerCircle; p++) {
-        const pa = (p / ptsPerCircle) * Math.PI * 2;
-        orbitPoints.push({
-          x: cx + Math.cos(pa) * 0.06 + (Math.random() - 0.5) * 0.012,
-          y: cy + Math.sin(pa) * 0.12 + (Math.random() - 0.5) * 0.012,
-          side: "right",
+      // ── Right side hover shape: 6 orbital circles ──
+      const orbitPoints: { x: number; y: number; side: "right" }[] = [];
+      const numCircles = 6;
+      const ptsPerCircle = 55;
+      for (let c = 0; c < numCircles; c++) {
+        const angle = (c / numCircles) * Math.PI * 2;
+        const cx = 0.75 + Math.cos(angle) * 0.085;
+        const cy = 0.5 + Math.sin(angle) * 0.2;
+        for (let p = 0; p < ptsPerCircle; p++) {
+          const pa = (p / ptsPerCircle) * Math.PI * 2;
+          orbitPoints.push({
+            x: cx + Math.cos(pa) * 0.06 + (Math.random() - 0.5) * 0.012,
+            y: cy + Math.sin(pa) * 0.12 + (Math.random() - 0.5) * 0.012,
+            side: "right",
+          });
+        }
+      }
+
+      // Build particles for each side
+      const makeParticles = <T extends { x: number; y: number }>(targets: T[], side: "left" | "right") =>
+        targets.map((pt) => {
+          const rx = side === "left" ? Math.random() * 0.5 : 0.5 + Math.random() * 0.5;
+          const ry = Math.random();
+          return {
+            x: rx, y: ry,
+            randomX: rx, randomY: ry,
+            targetX: pt.x, targetY: pt.y,
+            r: Math.random() * 1.0 + 0.7,
+            speed: Math.random() * 0.035 + 0.045,
+            alpha: Math.random() * 0.65 + 0.35,
+            isAccent: Math.random() < 0.1,
+          };
         });
-      }
-    }
 
-    // Build particles for each side
-    const makeParticles = <T extends { x: number; y: number }>(targets: T[], side: "left" | "right") =>
-      targets.map((pt) => {
-        const rx = side === "left" ? Math.random() * 0.5 : 0.5 + Math.random() * 0.5;
-        const ry = Math.random();
-        return {
-          x: rx, y: ry,
-          randomX: rx, randomY: ry,
-          targetX: pt.x, targetY: pt.y,
-          r: Math.random() * 1.0 + 0.7,
-          speed: Math.random() * 0.035 + 0.045,
-          alpha: Math.random() * 0.65 + 0.35,
-          isAccent: Math.random() < 0.1,
-        };
-      });
+      const leftParticles = makeParticles(bracketPoints, "left");
+      const rightParticles = makeParticles(orbitPoints, "right");
 
-    const leftParticles = makeParticles(bracketPoints, "left");
-    const rightParticles = makeParticles(orbitPoints, "right");
+      let leftAlpha = 0;
+      let rightAlpha = 0;
 
-    let leftAlpha = 0;
-    let rightAlpha = 0;
+      const render = () => {
+        ctx.clearRect(0, 0, width, height);
 
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
+        const isLeft = hoverSide === "left";
+        const isRight = hoverSide === "right";
 
-      const isLeft = hoverSide === "left";
-      const isRight = hoverSide === "right";
+        leftAlpha += ((isLeft ? 1 : 0) - leftAlpha) * 0.07;
+        rightAlpha += ((isRight ? 1 : 0) - rightAlpha) * 0.07;
 
-      leftAlpha += ((isLeft ? 1 : 0) - leftAlpha) * 0.07;
-      rightAlpha += ((isRight ? 1 : 0) - rightAlpha) * 0.07;
+        const mx = mouseRef.current.x;
+        const my = mouseRef.current.y;
 
-      const mx = mouseRef.current.x;
-      const my = mouseRef.current.y;
-
-      // Draw background stipple
-      ctx.fillStyle = "#111111";
-      for (let i = 0; i < bgDots.length; i++) {
-        const dot = bgDots[i];
-        const dx = dot.x - mx;
-        const dy = dot.y - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const isActiveZone = (dot.x < 0.5 && isLeft) || (dot.x >= 0.5 && isRight);
-        if (isActiveZone && dist < 0.2) {
-          const force = (0.2 - dist) * 0.06;
-          dot.x += (dx / (dist || 1)) * force;
-          dot.y += (dy / (dist || 1)) * force;
-        } else {
-          dot.x += (dot.originX - dot.x) * 0.04;
-          dot.y += (dot.originY - dot.y) * 0.04;
-        }
-        ctx.globalAlpha = dot.opacity;
-        ctx.beginPath();
-        ctx.arc(dot.x * width, dot.y * height, dot.r * window.devicePixelRatio, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Draw left bracket particles
-      if (leftAlpha > 0.005) {
-        for (const p of leftParticles) {
-          const destX = isLeft ? p.targetX : p.randomX;
-          const destY = isLeft ? p.targetY : p.randomY;
-          p.x += (destX - p.x) * p.speed;
-          p.y += (destY - p.y) * p.speed;
-          ctx.globalAlpha = p.alpha * leftAlpha;
-          ctx.fillStyle = p.isAccent ? "#EF4444" : "#0F62FE";
+        // Draw background stipple
+        ctx.fillStyle = "#111111";
+        for (let i = 0; i < bgDots.length; i++) {
+          const dot = bgDots[i];
+          const dx = dot.x - mx;
+          const dy = dot.y - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const isActiveZone = (dot.x < 0.5 && isLeft) || (dot.x >= 0.5 && isRight);
+          if (isActiveZone && dist < 0.2) {
+            const force = (0.2 - dist) * 0.06;
+            dot.x += (dx / (dist || 1)) * force;
+            dot.y += (dy / (dist || 1)) * force;
+          } else {
+            dot.x += (dot.originX - dot.x) * 0.04;
+            dot.y += (dot.originY - dot.y) * 0.04;
+          }
+          ctx.globalAlpha = dot.opacity;
           ctx.beginPath();
-          ctx.arc(p.x * width, p.y * height, p.r * window.devicePixelRatio, 0, Math.PI * 2);
+          ctx.arc(dot.x * width, dot.y * height, dot.r * window.devicePixelRatio, 0, Math.PI * 2);
           ctx.fill();
         }
-      }
 
-      // Draw right orbit particles
-      if (rightAlpha > 0.005) {
-        for (const p of rightParticles) {
-          const destX = isRight ? p.targetX : p.randomX;
-          const destY = isRight ? p.targetY : p.randomY;
-          p.x += (destX - p.x) * p.speed;
-          p.y += (destY - p.y) * p.speed;
-          ctx.globalAlpha = p.alpha * rightAlpha;
-          ctx.fillStyle = p.isAccent ? "#EF4444" : "#0F62FE";
-          ctx.beginPath();
-          ctx.arc(p.x * width, p.y * height, p.r * window.devicePixelRatio, 0, Math.PI * 2);
-          ctx.fill();
+        // Draw left bracket particles
+        if (leftAlpha > 0.005) {
+          for (const p of leftParticles) {
+            const destX = isLeft ? p.targetX : p.randomX;
+            const destY = isLeft ? p.targetY : p.randomY;
+            p.x += (destX - p.x) * p.speed;
+            p.y += (destY - p.y) * p.speed;
+            ctx.globalAlpha = p.alpha * leftAlpha;
+            ctx.fillStyle = p.isAccent ? "#EF4444" : "#0F62FE";
+            ctx.beginPath();
+            ctx.arc(p.x * width, p.y * height, p.r * window.devicePixelRatio, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
-      }
 
-      ctx.globalAlpha = 1;
-      animationFrameId = requestAnimationFrame(render);
-    };
+        // Draw right orbit particles
+        if (rightAlpha > 0.005) {
+          for (const p of rightParticles) {
+            const destX = isRight ? p.targetX : p.randomX;
+            const destY = isRight ? p.targetY : p.randomY;
+            p.x += (destX - p.x) * p.speed;
+            p.y += (destY - p.y) * p.speed;
+            ctx.globalAlpha = p.alpha * rightAlpha;
+            ctx.fillStyle = p.isAccent ? "#EF4444" : "#0F62FE";
+            ctx.beginPath();
+            ctx.arc(p.x * width, p.y * height, p.r * window.devicePixelRatio, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
 
-    render();
+        ctx.globalAlpha = 1;
+        animationFrameId = requestAnimationFrame(render);
+      };
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hoverSide]);
+      render();
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        cancelAnimationFrame(animationFrameId);
+      };
+    }, [hoverSide]);
 
   return (
     <section

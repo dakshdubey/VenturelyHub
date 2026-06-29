@@ -21,7 +21,6 @@ import {
   ShoppingCart,
   SearchNormal1,
   MessageText,
-  Microscope,
 } from "iconsax-react";
 
 const ICON_COLOR = "#111111";

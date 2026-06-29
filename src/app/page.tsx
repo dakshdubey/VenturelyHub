@@ -17,13 +17,10 @@ import {
   Paintbucket,
   DocumentText,
   ArrowRight,
-  ArrowDown,
   TickCircle
 } from "iconsax-react";
 
 import GooeyNav from "@/components/GooeyNav";
-import ElectricBorder from "@/components/ElectricBorder";
-import LogoLoop from "@/components/LogoLoop";
 import IconWave from "@/components/IconWave";
 import ParticleInteractiveCards from "@/components/ParticleInteractiveCards";
 import CaseStudySlider from "@/components/CaseStudySlider";
@@ -37,19 +34,7 @@ const navItems = [
   { label: "About", href: "#about" }
 ];
 
-// Tech stack items for LogoLoop
-const techLogos = [
-  <span key="next" className="font-mono text-base font-bold tracking-tight text-neutral-900">NEXT.JS 15</span>,
-  <span key="react" className="font-mono text-base font-bold tracking-tight text-neutral-900">REACT 19</span>,
-  <span key="ts" className="font-mono text-base font-bold tracking-tight text-neutral-900">TYPESCRIPT</span>,
-  <span key="tail" className="font-mono text-base font-bold tracking-tight text-neutral-900">TAILWIND 4.0</span>,
-  <span key="node" className="font-mono text-base font-bold tracking-tight text-neutral-900">NODEJS</span>,
-  <span key="aws" className="font-mono text-base font-bold tracking-tight text-neutral-900">AMAZON AWS</span>,
-  <span key="gcp" className="font-mono text-base font-bold tracking-tight text-neutral-900">GOOGLE CLOUD</span>,
-  <span key="openai" className="font-mono text-base font-bold tracking-tight text-neutral-900">OPENAI API</span>,
-  <span key="framer" className="font-mono text-base font-bold tracking-tight text-neutral-900">FRAMER MOTION</span>,
-  <span key="vercel" className="font-mono text-base font-bold tracking-tight text-neutral-900">VERCEL DEPLOY</span>
-];
+
 
 // Service categories data
 const serviceCategories = [
@@ -510,45 +495,40 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left — sticky text */}
           <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20 lg:py-0">
-            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">01 / Custom SDK Development</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6 font-sans">
               Custom SDK<br />Development
             </h2>
-            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mb-10">
-              We engineer proprietary SDKs, internal frameworks, and software modules designed specifically for your business.
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm font-sans">
+              We engineer proprietary SDKs, internal frameworks, and software modules designed specifically for your business. Own your code, remove external dependencies, and scale indefinitely.
             </p>
-            <ul className="flex flex-col gap-3">
-              {["Enhanced Security", "Technology Ownership", "Scalable Architecture", "Enterprise Performance", "Custom Integrations", "Long-Term Flexibility"].map(b => (
-                <li key={b} className="flex items-center gap-3 text-sm text-neutral-700">
-                  <span className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
-                    <svg width="8" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </span>
-                  {b}
-                </li>
-              ))}
-            </ul>
           </div>
-          {/* Right — visual panel */}
-          <div className="flex items-center justify-center bg-neutral-50 p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
-            <div className="w-full max-w-md rounded-3xl overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.12)] bg-[#0D0D0D] p-6 font-mono text-sm">
-              <div className="flex items-center gap-2 mb-5">
-                <span className="w-3 h-3 rounded-full bg-red-500" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400" />
-                <span className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="ml-3 text-neutral-500 text-xs">venturely-sdk / index.ts</span>
-              </div>
-              <div className="space-y-1 text-xs leading-relaxed">
-                <p><span className="text-purple-400">import</span> <span className="text-white">{"{ VenturelySdk }"}</span> <span className="text-purple-400">from</span> <span className="text-green-400">&apos;@venturely/core&apos;</span></p>
-                <p className="text-neutral-600">&nbsp;</p>
-                <p><span className="text-blue-400">const</span> <span className="text-white">sdk</span> <span className="text-neutral-400">=</span> <span className="text-yellow-300">new</span> <span className="text-cyan-400">VenturelySdk</span><span className="text-white">{"({"}</span></p>
-                <p className="pl-4"><span className="text-blue-300">apiKey</span><span className="text-white">:</span> <span className="text-green-400">process.env.VH_KEY</span><span className="text-white">,</span></p>
-                <p className="pl-4"><span className="text-blue-300">org</span><span className="text-white">:</span> <span className="text-green-400">&apos;your-company&apos;</span><span className="text-white">,</span></p>
-                <p className="pl-4"><span className="text-blue-300">encryption</span><span className="text-white">:</span> <span className="text-orange-400">true</span><span className="text-white">,</span></p>
-                <p><span className="text-white">{"});"}</span></p>
-                <p className="text-neutral-600">&nbsp;</p>
-                <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}</span></p>
-                <p className="pl-4"><span className="text-blue-400">return</span> <span className="text-white">sdk.</span><span className="text-yellow-300">transform</span><span className="text-white">(data, {"{"} <span className="text-blue-300">secure</span>: <span className="text-orange-400">true</span> {"}"});"</span></p>
-                <p><span className="text-white">{"}"}</span></p>
+          {/* Right — visual panel styled like premium terminal screenshot */}
+          <div className="flex items-center justify-center bg-white p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full max-w-lg aspect-[4/3] rounded-[32px] bg-black p-8 flex items-center justify-center shadow-xl relative overflow-hidden">
+              {/* Starry background effect */}
+              <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+              
+              {/* Terminal mock */}
+              <div className="w-full rounded-2xl bg-[#16171d] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 font-mono text-xs relative z-10">
+                <div className="flex items-center gap-1.5 mb-4">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                  <span className="ml-2 text-neutral-500 text-[10px]">venturely-sdk / index.ts</span>
+                </div>
+                <div className="space-y-1 text-neutral-300 leading-relaxed">
+                  <p><span className="text-purple-400">import</span> <span className="text-white">{"{ VenturelySdk }"}</span> <span className="text-purple-400">from</span> <span className="text-green-400">&apos;@venturely/core&apos;</span></p>
+                  <p className="text-neutral-600">&nbsp;</p>
+                  <p><span className="text-blue-400">const</span> <span className="text-white">sdk</span> <span className="text-neutral-400">=</span> <span className="text-yellow-300">new</span> <span className="text-cyan-400">VenturelySdk</span><span className="text-white">{"({"}</span></p>
+                  <p className="pl-4"><span className="text-blue-300">apiKey</span><span className="text-white">:</span> <span className="text-green-400">process.env.VH_KEY</span><span className="text-white">,</span></p>
+                  <p className="pl-4"><span className="text-blue-300">org</span><span className="text-white">:</span> <span className="text-green-400">&apos;your-company&apos;</span><span className="text-white">,</span></p>
+                  <p className="pl-4"><span className="text-blue-300">encryption</span><span className="text-white">:</span> <span className="text-orange-400">true</span><span className="text-white">,</span></p>
+                  <p><span className="text-white">{"});"}</span></p>
+                  <p className="text-neutral-600">&nbsp;</p>
+                  <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}</span></p>
+                  <p className="pl-4"><span className="text-blue-400">return</span> <span className="text-white">sdk.</span><span className="text-yellow-300">transform</span><span className="text-white">(data, {"{"} <span className="text-blue-300">secure</span>: <span className="text-orange-400">true</span> {"}"});</span></p>
+                  <p><span className="text-white">{"}"}</span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -558,55 +538,45 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left — sticky text */}
           <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20 lg:py-0">
-            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">02 / White-Label Products</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6 font-sans">
               White-Label<br />Products
             </h2>
-            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mb-10">
-              Deploy fully branded, production-ready digital products under your own identity — built by us, owned by you.
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm font-sans">
+              Deploy fully branded, production-ready digital products under your own identity. Built by our engineering teams, fully owned and hosted by yours.
             </p>
-            <ul className="flex flex-col gap-3">
-              {["Full Brand Control", "Rapid Market Entry", "No Attribution Required", "Ongoing Support", "Source Code Delivery", "Custom Licensing"].map(b => (
-                <li key={b} className="flex items-center gap-3 text-sm text-neutral-700">
-                  <span className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
-                    <svg width="8" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </span>
-                  {b}
-                </li>
-              ))}
-            </ul>
           </div>
-          {/* Right — visual panel */}
-          <div className="flex items-center justify-center bg-neutral-50 p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
-            <div className="w-full max-w-md space-y-4">
-              <div className="rounded-3xl border border-[#ECECEC] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.07)] overflow-hidden">
-                <div className="flex items-center justify-between px-6 py-4 border-b border-[#ECECEC]">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-neutral-900 flex items-center justify-center">
-                      <span className="text-white text-[8px] font-black">Y</span>
+          {/* Right — visual panel styled like the premium glowing bordered mockup */}
+          <div className="flex items-center justify-center bg-white p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full max-w-lg aspect-[4/3] rounded-[32px] bg-neutral-100 p-8 flex items-center justify-center shadow-sm relative overflow-hidden border border-neutral-200/50">
+              {/* Soft glow border background */}
+              <div className="absolute inset-2 rounded-[24px] bg-[conic-gradient(from_0deg,#ffeedd,#e0f0ff,#ffe6f0,#ffeedd)] opacity-50 blur-xl pointer-events-none" />
+              
+              {/* Inside card */}
+              <div className="w-full rounded-2xl border border-neutral-200/80 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden relative z-10">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-[#ECECEC]">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center">
+                      <span className="text-white text-[6px] font-black">Y</span>
                     </div>
-                    <span className="text-sm font-bold text-neutral-900">YourBrand</span>
+                    <span className="text-xs font-bold text-neutral-900">YourBrand</span>
                   </div>
-                  <div className="flex gap-4 items-center text-xs text-neutral-400">
-                    <span>Dashboard</span>
-                    <span>Analytics</span>
+                  <div className="flex gap-3 items-center text-[10px] text-neutral-400">
                     <span className="text-neutral-900 font-semibold">Settings</span>
                   </div>
                 </div>
-                <div className="p-6 space-y-3">
-                  <div className="h-2 bg-neutral-100 rounded-full w-3/4" />
-                  <div className="h-2 bg-neutral-100 rounded-full w-1/2" />
-                  <div className="grid grid-cols-3 gap-3 mt-4">
+                <div className="p-5 space-y-3">
+                  <div className="h-1.5 bg-neutral-100 rounded-full w-2/3" />
+                  <div className="h-1.5 bg-neutral-100 rounded-full w-1/2" />
+                  <div className="grid grid-cols-3 gap-2 mt-3">
                     {["Users", "Revenue", "Growth"].map(l => (
-                      <div key={l} className="rounded-xl border border-[#ECECEC] p-4 bg-white">
-                        <div className="text-[10px] text-neutral-400 mb-1">{l}</div>
-                        <div className="text-lg font-black text-neutral-900">—</div>
+                      <div key={l} className="rounded-lg border border-[#ECECEC] p-3 bg-white">
+                        <div className="text-[8px] text-neutral-400 mb-0.5">{l}</div>
+                        <div className="text-sm font-black text-neutral-900">—</div>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <p className="text-center text-xs text-neutral-400 tracking-wide">Fully branded. Zero attribution. 100% yours.</p>
             </div>
           </div>
         </div>
@@ -615,32 +585,27 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left — sticky text */}
           <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center px-10 md:px-16 lg:px-20 py-20 lg:py-0">
-            <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest mb-5">03 / AI Infrastructure</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight leading-[1.1] mb-6 font-sans">
               AI Infrastructure<br />&amp; Pipelines
             </h2>
-            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mb-10">
-              End-to-end AI systems — from model training pipelines and vector databases to production-grade LLM deployment.
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm font-sans">
+              End-to-end custom artificial intelligence solutions. We develop specialized LLM fine-tuning pipelines, secure RAG vector setups, and custom models tailored for security and scale.
             </p>
-            <ul className="flex flex-col gap-3">
-              {["LLM Fine-Tuning", "RAG Pipelines", "Vector Embeddings", "Real-Time Inference", "Model Observability", "Cost Optimisation"].map(b => (
-                <li key={b} className="flex items-center gap-3 text-sm text-neutral-700">
-                  <span className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
-                    <svg width="8" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </span>
-                  {b}
-                </li>
-              ))}
-            </ul>
           </div>
-          {/* Right — AI Glow Orb visual */}
-          <div className="flex items-center justify-center p-10 md:p-16 min-h-[60vh] lg:min-h-screen bg-[#060814]">
-            <div className="relative w-72 h-72 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(30,80,255,0.55)_0%,rgba(10,20,80,0.3)_50%,transparent_80%)] blur-2xl" />
-              <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(80,120,255,0.4)_0%,transparent_70%)] blur-xl" />
-              <div className="relative z-10 text-center">
-                <p className="text-white text-lg font-bold tracking-tight">Venturely AI</p>
-                <p className="text-blue-300 text-xs mt-1 opacity-70">Infrastructure Engine</p>
+          {/* Right — visual panel styled like blue radial glow core */}
+          <div className="flex items-center justify-center bg-white p-10 md:p-16 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full max-w-lg aspect-[4/3] rounded-[32px] bg-[#060814] flex items-center justify-center relative overflow-hidden shadow-xl">
+              {/* Starry background dots */}
+              <div className="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
+              
+              {/* Radial blue core */}
+              <div className="relative w-64 h-64 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(30,80,255,0.45)_0%,rgba(10,20,80,0.25)_50%,transparent_80%)] blur-2xl" />
+                <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,rgba(80,120,255,0.3)_0%,transparent_70%)] blur-xl" />
+                <div className="relative z-10 text-center">
+                  <p className="text-white text-base font-bold tracking-tight">Venturely AI</p>
+                  <p className="text-blue-300 text-[10px] mt-0.5 opacity-60">Infrastructure Engine</p>
+                </div>
               </div>
             </div>
           </div>
