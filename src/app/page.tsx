@@ -502,35 +502,35 @@ export default function Home() {
               We engineer proprietary SDKs, internal frameworks, and software modules designed specifically for your business. Own your code, remove external dependencies, and scale indefinitely.
             </p>
           </div>
-          {/* Right — visual panel styled like premium terminal screenshot */}
-          <div className="flex items-center justify-center bg-white p-6 md:p-12 min-h-[60vh] lg:min-h-screen">
-            <div className="w-full max-w-2xl aspect-[4/3] rounded-[32px] bg-black p-8 md:p-12 flex items-center justify-center shadow-xl relative overflow-hidden">
+          {/* Right — visual panel styled like premium term          <div className="flex items-center justify-center bg-white px-8 md:px-14 min-h-[60vh] lg:min-h-screen">
+            <div className="w-full rounded-[32px] bg-black p-10 md:p-14 flex items-center justify-center shadow-2xl relative overflow-hidden" style={{minHeight: '520px'}}>
               {/* Starry background effect */}
               <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
               
               {/* Terminal mock */}
-              <div className="w-full rounded-2xl bg-[#16171d] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 md:p-8 font-mono text-xs md:text-sm relative z-10">
-                <div className="flex items-center gap-1.5 mb-5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                  <span className="ml-2 text-neutral-500 text-xs">venturely-sdk / index.ts</span>
+              <div className="w-full rounded-2xl bg-[#16171d] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-8 md:p-10 font-mono text-sm md:text-base relative z-10">
+                <div className="flex items-center gap-2 mb-7">
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#ff5f56]" />
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#27c93f]" />
+                  <span className="ml-3 text-neutral-500 text-sm">venturely-sdk / index.ts</span>
                 </div>
-                <div className="space-y-1.5 text-neutral-300 leading-relaxed">
+                <div className="space-y-3 text-neutral-300 leading-loose">
                   <p><span className="text-purple-400">import</span> <span className="text-white">{"{ VenturelySdk }"}</span> <span className="text-purple-400">from</span> <span className="text-green-400">&apos;@venturely/core&apos;</span></p>
                   <p className="text-neutral-600">&nbsp;</p>
                   <p><span className="text-blue-400">const</span> <span className="text-white">sdk</span> <span className="text-neutral-400">=</span> <span className="text-yellow-300">new</span> <span className="text-cyan-400">VenturelySdk</span><span className="text-white">{"({"}</span></p>
-                  <p className="pl-4"><span className="text-blue-300">apiKey</span><span className="text-white">:</span> <span className="text-green-400">process.env.VH_KEY</span><span className="text-white">,</span></p>
-                  <p className="pl-4"><span className="text-blue-300">org</span><span className="text-white">:</span> <span className="text-green-400">&apos;your-company&apos;</span><span className="text-white">,</span></p>
-                  <p className="pl-4"><span className="text-blue-300">encryption</span><span className="text-white">:</span> <span className="text-orange-400">true</span><span className="text-white">,</span></p>
+                  <p className="pl-6"><span className="text-blue-300">apiKey</span><span className="text-white">:</span> <span className="text-green-400">process.env.VH_KEY</span><span className="text-white">,</span></p>
+                  <p className="pl-6"><span className="text-blue-300">org</span><span className="text-white">:</span> <span className="text-green-400">&apos;your-company&apos;</span><span className="text-white">,</span></p>
+                  <p className="pl-6"><span className="text-blue-300">encryption</span><span className="text-white">:</span> <span className="text-orange-400">true</span><span className="text-white">,</span></p>
                   <p><span className="text-white">{"});"}</span></p>
                   <p className="text-neutral-600">&nbsp;</p>
-                  <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}</span></p>
-                  <p className="pl-4"><span className="text-blue-400">return</span> <span className="text-white">sdk.</span><span className="text-yellow-300">transform</span><span className="text-white">(data, {"{"} <span className="text-blue-300">secure</span>: <span className="text-orange-400">true</span> {"}"});</span></p>
+                  <p><span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-300">processPayload</span> <span className="text-neutral-400">=</span> <span className="text-blue-400">async</span> <span className="text-white">(data) =&gt; {"{"}}</span></p>
+                  <p className="pl-6"><span className="text-blue-400">return</span> <span className="text-white">sdk.</span><span className="text-yellow-300">transform</span><span className="text-white">(data, {"{ "} <span className="text-blue-300">secure</span>: <span className="text-orange-400">true</span> {"}"});</span></p>
                   <p><span className="text-white">{"}"}</span></p>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
 
