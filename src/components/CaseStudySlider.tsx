@@ -106,11 +106,6 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // 3D tilt springs for the whole card
-  const rotateX = useSpring(0, { stiffness: 160, damping: 20, mass: 0.5 });
-  const rotateY = useSpring(0, { stiffness: 160, damping: 20, mass: 0.5 });
-  const scale = useSpring(1, { stiffness: 200, damping: 20 });
-
   // Magnetic button springs
   const buttonX = useSpring(0, { stiffness: 200, damping: 18, mass: 0.4 });
   const buttonY = useSpring(0, { stiffness: 200, damping: 18, mass: 0.4 });
@@ -119,12 +114,6 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!cardRef.current) return;
       const rect = cardRef.current.getBoundingClientRect();
-      const nx = (e.clientX - rect.left) / rect.width;  // 0–1
-      const ny = (e.clientY - rect.top) / rect.height;  // 0–1
-
-      // 3D tilt: ±8° range
-      rotateY.set((nx - 0.5) * 16);
-      rotateX.set(-(ny - 0.5) * 10);
 
       // Magnetic button: relative to bottom-right anchor
       const cx = rect.left + rect.width * 0.82;
@@ -132,40 +121,30 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
       buttonX.set((e.clientX - cx) * 0.5);
       buttonY.set((e.clientY - cy) * 0.5);
     },
-    [rotateX, rotateY, buttonX, buttonY]
+    [buttonX, buttonY]
   );
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
-    scale.set(1.02);
-  }, [scale]);
+  }, []);
 
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
-    rotateX.set(0);
-    rotateY.set(0);
-    scale.set(1);
     buttonX.set(0);
     buttonY.set(0);
-  }, [rotateX, rotateY, scale, buttonX, buttonY]);
+  }, [buttonX, buttonY]);
 
   return (
     <div
       className="shrink-0 w-[90vw] sm:w-[680px] md:w-[760px] lg:w-[840px] flex flex-col gap-5 group cursor-pointer"
-      style={{ scrollSnapAlign: "start", perspective: "1000px" }}
+      style={{ scrollSnapAlign: "start" }}
     >
-      {/* 3D Tilting Image Card */}
-      <motion.div
+      {/* Static Image Card (No tilt/scale) */}
+      <div
         ref={cardRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
-        style={{
-          rotateX,
-          rotateY,
-          scale,
-          transformStyle: "preserve-3d",
-        }}
         className="relative aspect-[16/9.5] min-h-[380px] md:min-h-[480px] w-full rounded-[36px] overflow-hidden bg-neutral-200 border border-[#ECECEC] shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
       >
         <Image
@@ -178,15 +157,12 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
         {/* Subtle Dark Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-        {/* Text Overlay on Left — slight z-lift for depth feel */}
-        <motion.div
-          className="absolute top-10 left-10 z-10 max-w-[220px]"
-          style={{ z: 20 }}
-        >
+        {/* Text Overlay on Left */}
+        <div className="absolute top-10 left-10 z-10 max-w-[220px]">
           <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight tracking-tight whitespace-pre-line font-sans drop-shadow-sm">
             {item.roleOverlay}
           </h3>
-        </motion.div>
+        </div>
 
         {/* Magnetic Watch Case pill */}
         <div className="absolute bottom-10 right-10 md:bottom-12 md:right-12 z-20 pointer-events-none">
@@ -202,17 +178,7 @@ function CaseStudyCard({ item }: { item: CaseStudy }) {
             <span>{item.buttonText}</span>
           </motion.div>
         </div>
-
-        {/* Highlight sheen that tracks cursor */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: isHovered
-              ? "radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.07) 0%, transparent 60%)"
-              : "none",
-          }}
-        />
-      </motion.div>
+      </div>
 
       {/* Subtext info below image */}
       <div className="px-2 pt-1 flex flex-col gap-0.5">
