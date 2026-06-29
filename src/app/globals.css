@@ -38,6 +38,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Premium minimalist scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E5E5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #CCCCCC;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E5E5E5 #FFFFFF;
+}
+
 /* Custom Premium Typography Utilities */
 .hero-heading {
   font-size: clamp(3.5rem, 8vw, 110px);
