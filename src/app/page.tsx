@@ -561,28 +561,17 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen text-[#111111] selection:bg-neutral-900 selection:text-white">
       {/* HEADER / FLOATING NAV CONTAINER */}
-      <header className="fixed top-6 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-20 pointer-events-none">
-        {/* Left Side: Brand Logo */}
-        <div className="hidden md:flex items-center gap-2 pointer-events-auto w-44">
-          <a href="#home" className="flex items-center gap-2.5 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full border border-[#ECECEC] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-neutral-300 transition-colors group">
-            <Image
-              src="/assets/venturely.jpeg"
-              alt="Venturely Hub Logo"
-              width={20}
-              height={20}
-              className="rounded-md grayscale group-hover:grayscale-0 transition-all duration-300"
-            />
-            <span className="font-extrabold tracking-[0.18em] text-neutral-900 text-[10px] uppercase font-sans">VENTURELY</span>
-          </a>
-        </div>
+      <header className="fixed top-6 left-0 right-0 z-50 grid grid-cols-3 px-6 md:px-12 lg:px-20 pointer-events-none items-center">
+        {/* Left Side: Empty spacer to balance layout centering */}
+        <div className="hidden md:block pointer-events-auto" />
 
         {/* Center: Navigation Bar */}
-        <div className="pointer-events-auto w-full md:w-auto flex justify-center">
+        <div className="pointer-events-auto col-span-3 md:col-span-1 flex justify-center">
           <GooeyNav items={navItems} />
         </div>
 
         {/* Right Side: Login Button */}
-        <div className="hidden md:flex pointer-events-auto justify-end w-44">
+        <div className="hidden md:flex pointer-events-auto justify-end">
           <a 
             href="#login" 
             className="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-neutral-800 transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-neutral-800 font-sans"
@@ -592,6 +581,7 @@ export default function Home() {
           </a>
         </div>
       </header>
+
 
 
 
