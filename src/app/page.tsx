@@ -27,6 +27,7 @@ import LogoLoop from "@/components/LogoLoop";
 import IconWave from "@/components/IconWave";
 import InteractiveGlobe from "@/components/InteractiveGlobe";
 import ParticleInteractiveCards from "@/components/ParticleInteractiveCards";
+import CaseStudySlider from "@/components/CaseStudySlider";
 
 // Navigation Items
 const navItems = [
@@ -354,7 +355,9 @@ export default function Home() {
       {/* BRAND & TECH LOGO MARQUEE */}
       <section className="bg-white border-y border-[#ECECEC]">
         <LogoLoop items={techLogos} speed={25} />
-      </sect      {/* SERVICES SECTION */}
+      </section>
+
+      {/* SERVICES SECTION */}
       <section
         id="services"
         className="py-24 md:py-32 bg-[#FAFAFA]"
@@ -613,6 +616,9 @@ export default function Home() {
 
       {/* INTERACTIVE STIPPLE PARTICLE CARDS */}
       <ParticleInteractiveCards />
+
+      {/* CASE STUDY SLIDER SECTION */}
+      <CaseStudySlider />
 
       {/* TRUST & ENGINEERING EXCELLENCE SECTION */}
       <section
